@@ -26,8 +26,8 @@ import pe.com.capacitacion.util.UtilJeager;
 	
 		private static final Logger LOGGER = LoggerFactory.getLogger( CapaDbController.class );
         
-		@Autowired
-		private CapaDbService capaDbService;
+		//@Autowired
+		//private CapaDbService capaDbService;
  
 		
 		/*************************************************************************************/
