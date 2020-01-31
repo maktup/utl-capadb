@@ -1,0 +1,196 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+	                         https://maven.apache.org/xsd/maven-4.0.0.xsd" >
+  
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>pe.com.capacitacion</groupId>
+	<artifactId>utl-capadb</artifactId>	
+	<name>utl-capadb</name>
+	<description>utl-capadb</description>
+    <packaging>jar</packaging>
+    <version>1.0.0</version>  
+    
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.0.4.RELEASE</version>
+        <relativePath/>  
+    </parent> 
+       
+	<properties>
+		<project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding> 
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+		<spring-boot-admin.version>2.0.3</spring-boot-admin.version>
+	</properties>
+ 
+	<dependencyManagement>
+		<dependencies>
+		    <!-- IMPORTANTE: [BOOT-ADMIN CLIENT] -->
+			<dependency>
+				<groupId>de.codecentric</groupId>
+				<artifactId>spring-boot-admin-dependencies</artifactId>
+				<version>${spring-boot-admin.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>Finchley.SR2</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+ 
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>  
+		</dependency>
+ 
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId> 
+		</dependency>
+ 
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId> 
+			<scope>test</scope>
+		</dependency> 
+ 
+ 	    <!-- IMPORTANTE: [FEIGN], generacion de CLIENTEs de WS -->	
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-openfeign</artifactId> 
+		</dependency>
+ 	
+ 	    <!-- IMPORTANTE: [SLEUTH & ZIPKIN], trazabilidad DISTRIBUIDA -->	
+		<dependency>
+		    <groupId>org.springframework.cloud</groupId>
+		    <artifactId>spring-cloud-starter-sleuth</artifactId> 
+		</dependency>	
+ 	
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-zipkin</artifactId> 
+		</dependency>		
+ 
+	    <!-- IMPORTANTE: [BOOT-ADMIN CLIENT] -->
+		<dependency>
+			<groupId>de.codecentric</groupId>
+			<artifactId>spring-boot-admin-starter-client</artifactId>
+			<version>2.1.6</version> 
+		</dependency>
+		
+		<!-- 
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+         -->
+         
+ 
+	    <!-- IMPORTANTE: [HYSTRIX], control de FALLAS en CASCADA -->	
+		<dependency>
+		    <groupId>org.springframework.cloud</groupId> 
+		    <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>  
+		</dependency>	
+ 
+	    <!-- IMPORTANTE: [ACTUATOR], recopilacion de metricas -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId> 
+		</dependency>
+        
+	    <!-- IMPORTANTE: [KUBERNETES] -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-kubernetes-config</artifactId>
+		    <version>0.3.0.RELEASE</version> 
+        </dependency>
+ 
+	    <!-- IMPORTANTE: [MICROMETER] -->
+		<dependency>
+			<groupId>io.micrometer</groupId>
+			<artifactId>micrometer-registry-prometheus</artifactId>
+			<version>1.0.3</version>
+		</dependency>
+   
+		<!-- IMPORTANTE: [JAEGER- CLIENT] -->		
+	    <dependency>
+	        <groupId>io.jaegertracing</groupId>
+	        <artifactId>jaeger-core</artifactId>
+	        <version>0.27.0</version>
+	    </dependency>
+	    
+		<dependency>
+		    <groupId>io.opentracing.contrib</groupId>
+		    <artifactId>opentracing-spring-web-autoconfigure</artifactId>
+		    <version>0.3.2</version>
+		</dependency>
+  
+  
+		<!-- IMPORTANTE: [BASE DE DATOS] -->	
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.6</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
+        
+        <dependency>
+			<groupId>com.oracle.jdbc</groupId>
+			<artifactId>ojdbc8</artifactId>
+			<version>19.3.0.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/ojdbc8-19.3.0.0.jar</systemPath>
+        </dependency> 
+        
+  
+		<!-- OTROS -->	
+		<dependency>
+		    <groupId>com.google.code.gson</groupId>
+		    <artifactId>gson</artifactId>
+		    <version>2.8.6</version>
+		</dependency>
+				
+ 		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>		
+				
+		<dependency>
+			<groupId>io.micrometer</groupId>
+			<artifactId>micrometer-core</artifactId>
+			<version>1.3.2</version>
+		</dependency>	
+		
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>2.9.0.pr2</version>
+		</dependency>
+		
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
+
