@@ -43,8 +43,9 @@ EXPOSE 8080
 ENV APP_HOME /app
 
 #------------------ EXTRA: configuracion DINANICA de 'VARIABLES de ENTORNO' ------------------#
-COPY /lib/ojdbc8-19.3.0.0.jar ./home/lib/ojdbc8-19.3.0.0.jar
+COPY /lib/ojdbc8-19.3.0.0.jar ./opt/lib/
 RUN mvn install:install-file -Dfile=/home/lib/ojdbc8-19.3.0.0.jar -DgroupId=com.oracle.jdbc -DartifactId=ojdbc8 -Dversion=19.3.0.0 -Dpackaging=jar
+
 
 ENV NOMBRE_MICROSERVICIO=utl-capadb
 #ENV BOOTADMIN_USUARIO=admin   [Manejado con SECRETs]
