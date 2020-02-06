@@ -206,7 +206,7 @@
 		<repository>
 			<id>repoCentral_TallerMicroservicios</id>
 			<name>Repositorio CENTRAL proporcionado por NEXUS 2</name>
-			<url>http://192.168.56.1:8081/nexus/content/repositories/Repositorio_TallerMicroservicios_releases/</url> 
+			<url>http://capacitacion.microservicios.nexus:8081/nexus/content/repositories/Repositorio_TallerMicroservicios_releases/</url> 
 			<releases>
 				<enabled>true</enabled>
 			</releases>
