@@ -108,13 +108,14 @@
 			<artifactId>spring-boot-starter-actuator</artifactId> 
 		</dependency>
         
-	    <!-- IMPORTANTE: [KUBERNETES] -->
+	    <!-- IMPORTANTE: [KUBERNETES] 
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-kubernetes-config</artifactId>
 		    <version>0.3.0.RELEASE</version> 
         </dependency>
- 
+        -->
+        
 	    <!-- IMPORTANTE: [MICROMETER] -->
 		<dependency>
 			<groupId>io.micrometer</groupId>

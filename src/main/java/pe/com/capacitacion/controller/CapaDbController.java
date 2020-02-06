@@ -37,7 +37,7 @@ import pe.com.capacitacion.util.UtilJeager;
 		@PostMapping( "/post/empleados" )
 		public ResponseMsg agregarEmpleado( @RequestBody Empleado empleado ){ 
 			   LOGGER.info( "CapaDbService 'agregarEmpleado': {}", empleado );
-			   this.jaegerAlertTracer(); 
+			   //this.jaegerAlertTracer(); 
 			   
 			   //Ejecutar:  
 			   ResponseMsg objResponseMsg = null; //this.objEmpleadoService.agregarEmpleadoService( empleado ); 
@@ -47,7 +47,7 @@ import pe.com.capacitacion.util.UtilJeager;
 		@GetMapping( "/get/empleados" )
 		public ResponseMsg consultarEmpleadosAll(){
 			   LOGGER.info( "CapaDbService 'consultarEmpleadosAll'" );
-			   this.jaegerAlertTracer(); 
+			   //this.jaegerAlertTracer(); 
 			   
 			   //Ejecutar: 
 			   ResponseMsg objResponseMsg = null; //this.objEmpleadoService.consultarEmpleadosAllService(); 
@@ -57,7 +57,7 @@ import pe.com.capacitacion.util.UtilJeager;
 		@GetMapping( "/get/empleados/{id}" )
 		public ResponseMsg consultarEmpleadosPorId( @PathVariable( "id" ) Long id ){
 			   LOGGER.info( "CapaDbService 'consultarEmpleadosPorId': id={}", id );
-			   this.jaegerAlertTracer(); 
+			   //this.jaegerAlertTracer(); 
 			   
 			   //Ejecutar: 
 			   ResponseMsg objResponseMsg = null; //this.objEmpleadoService.consultarEmpleadosPorIdService( id );
@@ -67,7 +67,7 @@ import pe.com.capacitacion.util.UtilJeager;
 		@GetMapping( "/get/departamentos/{departmentId}/empleados" )
 		public ResponseMsg consultarEmpleadosPorDepartamento( @PathVariable( "departmentId" ) Long departmentId ){
 			   LOGGER.info( "CapaDbService 'consultarEmpleadosPorDepartamento': departmentId={}", departmentId );
-			   this.jaegerAlertTracer(); 
+			   //this.jaegerAlertTracer(); 
 			   
 			   //Ejecutar: 
 			   ResponseMsg objResponseMsg = null; //this.objEmpleadoService.consultarEmpleadosPorDepartamentoService( departmentId );
@@ -81,7 +81,7 @@ import pe.com.capacitacion.util.UtilJeager;
 		@PostMapping( "/post/departamentos" )
 		public ResponseMsg agregarDepartamento( @RequestBody Departamento departamento ){
 			   LOGGER.info( "-----> CapaDbService 'agregarDepartamento': {}", departamento ); 
-			   this.jaegerAlertTracer(); 
+			   //this.jaegerAlertTracer(); 
 			   
 			   //Ejecutar: 
 			   ResponseMsg objResponseMsg = null; //this.objDepartamentoService.agregarDepartamentoService( departamento );  
@@ -91,7 +91,7 @@ import pe.com.capacitacion.util.UtilJeager;
 		@GetMapping( "/get/departamentos" )
 		public ResponseMsg consultarDepartamentosAll(){ 
 			   LOGGER.info( "-----> CapaDbService 'consultarDepartamentosAll'" );
-			   this.jaegerAlertTracer(); 
+			   //this.jaegerAlertTracer(); 
 			   
 			   //Ejecutar: 
 			   ResponseMsg objResponseMsg = null; //this.objDepartamentoService.consultarDepartamentosAllService(); 	 
@@ -101,7 +101,7 @@ import pe.com.capacitacion.util.UtilJeager;
 		@GetMapping( "/get/departamentos/{id}" )
 		public ResponseMsg consultarDepartamentosPorId( @PathVariable( "id" ) Long id ){ 
 			   LOGGER.info( "-----> CapaDbService 'consultarDepartamentosPorId': id={}", id );
-			   this.jaegerAlertTracer(); 
+			   //this.jaegerAlertTracer(); 
 			   
 			   //Ejecutar: 
 			   ResponseMsg objResponseMsg = null; //this.objDepartamentoService.consultarDepartamentosPorIdService( id ); 
@@ -111,7 +111,7 @@ import pe.com.capacitacion.util.UtilJeager;
 		@GetMapping( "/get/organizaciones/{organizationId}/departamentos" )
 		public ResponseMsg consultarDepartamentosPorOrganizacion( @PathVariable( "organizationId" ) Long organizationId ){
 			   LOGGER.info( "-----> CapaDbService 'consultarDepartamentosPorOrganizacion': organizationId={}", organizationId );
-			   this.jaegerAlertTracer(); 
+			   //this.jaegerAlertTracer(); 
 			   
 			   //Ejecutar:  
 			   ResponseMsg objResponseMsg = null; //this.objDepartamentoService.consultarDepartamentosPorOrganizacionService( organizationId ); 
@@ -139,7 +139,7 @@ import pe.com.capacitacion.util.UtilJeager;
 		@PostMapping( "/post/organizaciones" )
 		public ResponseMsg agregarOrganizacion( @RequestBody Organizacion organizacion ){ 
 			   LOGGER.info( "-----> CapaDbService 'agregarOrganizacion': {}", organizacion );
-			   this.jaegerAlertTracer(); 
+			   //this.jaegerAlertTracer(); 
 			   
 			   //Ejecutar: 
 			   ResponseMsg objResponseMsg = null; //this.objOrganizacionService.agregarOrganizacionService( organizacion ); 
@@ -149,7 +149,7 @@ import pe.com.capacitacion.util.UtilJeager;
 		@GetMapping( "/get/organizaciones" ) 
 		public ResponseMsg consultarOrganizacionesAll(){
 			   LOGGER.info( "-----> CapaDbService 'consultarOrganizacionesAll'" );
-			   this.jaegerAlertTracer(); 
+			   //this.jaegerAlertTracer(); 
 			   
 			   //Ejecutar: 
 			   ResponseMsg objResponseMsg = null; //this.objOrganizacionService.consultarOrganizacionesAllService(); 
@@ -159,7 +159,7 @@ import pe.com.capacitacion.util.UtilJeager;
 		@GetMapping( "/get/organizaciones/{id}" ) 
 		public ResponseMsg consultarOrganizacionesPorId( @PathVariable( "id" ) Long id ){ 
 			   LOGGER.info( "-----> CapaDbService 'consultarOrganizacionesPorId': id={}", id ); 
-			   this.jaegerAlertTracer(); 
+			   //this.jaegerAlertTracer(); 
 			   
 			   //Ejecutar: 
 			   ResponseMsg objResponseMsg = null; //this.objOrganizacionService.consultarOrganizacionesPorIdService( id ); 
@@ -169,7 +169,7 @@ import pe.com.capacitacion.util.UtilJeager;
 		@GetMapping( "/get/organizaciones/{id}/departamentos/empleados" ) 
 		public ResponseMsg consultarOrganizacionConDepartamentosPorId( @PathVariable( "id" ) Long id ){
 			   LOGGER.info( "-----> CapaDbService 'consultarOrganizacionConDepartamentosPorId': id={}", id ); 
-			   this.jaegerAlertTracer(); 
+			   //this.jaegerAlertTracer(); 
 			   
 			   //Ejecutar: 
 			   ResponseMsg objResponseMsg = null; //this.objOrganizacionService.consultarOrganizacionConDepartamentosPorIdService( id ); 

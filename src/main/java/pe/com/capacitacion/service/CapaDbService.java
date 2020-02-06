@@ -28,8 +28,8 @@ import pe.com.capacitacion.util.Constantes;
 		
 		private static final Logger LOGGER = LoggerFactory.getLogger( CapaDbService.class );
 	 
-		@Autowired
-		private OrganizacionRepository objRepositorio; 
+		//@Autowired
+		//private OrganizacionRepository objRepositorio; 
 		
 		@Autowired
 		private Constantes constantes; 
@@ -41,14 +41,14 @@ import pe.com.capacitacion.util.Constantes;
 		private RestTemplateBuilder objTemplate;  
 		
 		
-        @Autowired
-        private ConfigurationData_01 objConfigurationData01;   //ACCESO: inicia con [grupoconfig01]  
+        //@Autowired
+        //private ConfigurationData_01 objConfigurationData01;   //ACCESO: inicia con [grupoconfig01]  
 
-        @Autowired
-        private ConfigurationData_02 objConfigurationData02;   //ACCESO: inicia con [grupoconfig02]  
+        //@Autowired
+        //private ConfigurationData_02 objConfigurationData02;   //ACCESO: inicia con [grupoconfig02]  
 		
-        @Autowired
-        private org.springframework.core.env.Environment env;
+        //@Autowired
+        //private org.springframework.core.env.Environment env;
         
 	   /**
 	    * agregarOrganizacionService 	
@@ -60,9 +60,9 @@ import pe.com.capacitacion.util.Constantes;
 			   LOGGER.info( "------> Organizacion 'agregarOrganizacionService': {}", organizacion );
 			   
 			   ResponseMsg objResponseMsg = new ResponseMsg();
-			   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01, this.objConfigurationData02 ); 
+			   //this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01, this.objConfigurationData02 ); 
 			   
-			   this.objRepositorio.agregarOrganizacion( organizacion );    
+			   //this.objRepositorio.agregarOrganizacion( organizacion );    
 			   Auditoria objAuditoria = this.objAuditoriaException.cargarDatosAuditoria( this.constantes.IP_APP, this.constantes.nombreServicio, this.constantes.USUARIO_APP, this.constantes.MSJ_APP_OK ); 
   
 			   //Agregando: 
@@ -81,20 +81,20 @@ import pe.com.capacitacion.util.Constantes;
 			   LOGGER.info( "------> Organizacion 'consultarOrganizacionesAllService'" );
 			   
 			   ResponseMsg objResponseMsg = new ResponseMsg(); 
-			   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01, this.objConfigurationData02 ); 
+			   //this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01, this.objConfigurationData02 ); 
 			   
 			   //IMPORTANTE: RECUPERA EL 'SECRET' YA 'DESENCRIPTADO'.
-			   String vUsuario  =  this.env.getProperty( "BOOTADMIN_USUARIO" ); 
-			   String vPassword =  this.env.getProperty( "BOOTADMIN_USUARIO" ); 
-			   LOGGER.info( "- vUsuario: [" + vUsuario + "], - vPassword: [" + vPassword + "]" );
-			   
+			   //String vUsuario  =  this.env.getProperty( "BOOTADMIN_USUARIO" ); 
+			   //String vPassword =  this.env.getProperty( "BOOTADMIN_USUARIO" ); 
+			   //LOGGER.info( "- vUsuario: [" + vUsuario + "], - vPassword: [" + vPassword + "]" );
+			   /*
 			   List<Organizacion> listaOrganizacion = this.objRepositorio.consultarOrganizacionesAll();
 			   Auditoria          objAuditoria      = this.objAuditoriaException.cargarDatosAuditoria( this.constantes.IP_APP, this.constantes.nombreServicio, this.constantes.USUARIO_APP, this.constantes.MSJ_APP_OK ); 
 
 			   //Agregando: 
 			   objResponseMsg.setListaOrganizaciones( listaOrganizacion );
 			   objResponseMsg.setAuditoria( objAuditoria );
-			   
+			   */
 			   return objResponseMsg; 
 		}	
 		
@@ -108,8 +108,8 @@ import pe.com.capacitacion.util.Constantes;
 			   LOGGER.info( "------> Organizacion 'consultarOrganizacionesPorId': id={}", id ); 
 			   
 		       ResponseMsg objResponseMsg = new ResponseMsg();
-			   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01, this.objConfigurationData02 ); 
-			   
+			   //this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01, this.objConfigurationData02 ); 
+			   /*
 			   Organizacion objOrganizacion = this.objRepositorio.consultarOrganizacionesPorId( id ); 
 		       Auditoria    objAuditoria    = this.objAuditoriaException.cargarDatosAuditoria( this.constantes.IP_APP, this.constantes.nombreServicio, this.constantes.USUARIO_APP, this.constantes.MSJ_APP_OK );
 						
@@ -119,7 +119,7 @@ import pe.com.capacitacion.util.Constantes;
 			   //Agregando: 
 		       objResponseMsg.setListaOrganizaciones( listaOrganizacion );  
 		       objResponseMsg.setAuditoria( objAuditoria );
-		   
+		   */
 		       return objResponseMsg; 
 		}
 		
@@ -133,8 +133,8 @@ import pe.com.capacitacion.util.Constantes;
 			   LOGGER.info( "------> Organizacion 'consultarOrganizacionConDepartamentosPorIdService': id={}", id ); 
 			   
 		       ResponseMsg objResponseMsg = new ResponseMsg();
-			   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01, this.objConfigurationData02 ); 
-	 
+			   //this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01, this.objConfigurationData02 ); 
+	 /*
 			   //Ejecutar: 
 			   Organizacion objOrganizacion = this.objRepositorio.consultarOrganizacionesPorId( id );
 			   LOGGER.info( "------> objOrganizacion: [" + objOrganizacion + "]" ); 
@@ -159,7 +159,7 @@ import pe.com.capacitacion.util.Constantes;
 			   //Agregando: 
 		       objResponseMsg.setListaOrganizaciones( listaOrganizacion ); 
 		       objResponseMsg.setAuditoria( objAuditoria );
-		   
+		   */
 		       return objResponseMsg; 
 		}
  

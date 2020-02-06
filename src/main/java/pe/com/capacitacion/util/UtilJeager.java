@@ -28,7 +28,7 @@ import io.opentracing.Tracer;
 	   /**
 	    * jaegerAlertTracer	
 	    * @return Tracer
-	    **/ 
+	     
 	    @Bean
 	    public Tracer jaegerAlertTracer(){
 	   	       LOGGER.info( "============>: [jaegerAlertTracer] " ); 
@@ -42,7 +42,7 @@ import io.opentracing.Tracer;
 	           
 	           return objTracer;
 	    }
-	
+	    **/
  }
 
  

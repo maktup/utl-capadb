@@ -27,8 +27,8 @@ import org.springframework.stereotype.Component;
 	    public String ingressOrganization;
 	    
 	    
-	    @Value( "${jeaguer.conexion.url.server}" )    //ACCESO: al valor REMOTO [jeaguer.conexion.url.server]
-	    public String jeagerUrlServer;
+	    //@Value( "${jeaguer.conexion.url.server}" )    //ACCESO: al valor REMOTO [jeaguer.conexion.url.server]
+	    //public String jeagerUrlServer;
         
 	    @Value( "${spring.application.name}" )        //ACCESO: al valor REMOTO [spring.application.name]
 	    public String nombreMicroServicio;
