@@ -21,7 +21,7 @@ import pe.com.capacitacion.util.UtilJeager;
  * @author cguerra
  **/
  @RestController 
- @RequestMapping( "/capaDbService" )
+ @RequestMapping( "/utlcapadb" )
  public class CapaDbController extends UtilJeager{
 	
 		private static final Logger LOGGER = LoggerFactory.getLogger( CapaDbController.class );

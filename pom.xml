@@ -158,7 +158,7 @@
             <systemPath>${project.basedir}/lib/ojdbc8-19.3.0.0.jar</systemPath>
         </dependency> 
         --> 
-  
+   
         <dependency>
 			<groupId>com.oracle.jdbc</groupId>
 			<artifactId>ojdbc8</artifactId>
@@ -197,8 +197,24 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+ 
 		</plugins>
 	</build>
 
+	<!-- ACCESO 'REPOSITORIO CENTRAL' - [NEXUS] -->
+	<repositories>
+		<repository>
+			<id>repoCentral_TallerMicroservicios</id>
+			<name>Repositorio CENTRAL proporcionado por NEXUS 2</name>
+			<url>http://localhost:8081/nexus/content/repositories/Repositorio_TallerMicroservicios_releases/</url> 
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>	
+   
 </project>
 
