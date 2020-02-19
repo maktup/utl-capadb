@@ -15,38 +15,80 @@ import org.springframework.stereotype.Component;
 	 
 		@Value( "${propiedades.config.valor_01}" )    //ACCESO: [propiedades.config.valor_01:]
 		public String valor01; 
-	    
-		
-	    @Value( "${ingress.dns.employee}" )           //ACCESO: al valor REMOTO [ingress.dns.employee]
-	    public String ingressEmployee;
-		
-	    @Value( "${ingress.dns.department}" )         //ACCESO: al valor REMOTO [ingress.dns.department]
-	    public String ingressDepartment;
-	    
-	    @Value( "${ingress.dns.organization}" )       //ACCESO: al valor REMOTO [ingress.dns.organization]
-	    public String ingressOrganization;
-	    
-	    
-	    //@Value( "${jeaguer.conexion.url.server}" )    //ACCESO: al valor REMOTO [jeaguer.conexion.url.server]
-	    //public String jeagerUrlServer;
-        
+ 
 	    @Value( "${spring.application.name}" )        //ACCESO: al valor REMOTO [spring.application.name]
 	    public String nombreMicroServicio;
 	    
+
+	    //[GENERICOS]
+		@Value( "${propiedades.oracle.owner}" )       //ACCESO: [propiedades.oracle.owner]
+		public String oracle_owner; 
+	    
+		@Value( "${propiedades.oracle.timeout}" )     //ACCESO: [propiedades.oracle.timeout]
+		public Integer oracle_timeout; 
 		
-		public static String INSTANCIA_EUREKA_01 = "EMPLOYEE-SERVICE"; 
-		public static String INSTANCIA_EUREKA_02 = "DEPARTMENT-SERVICE";  
-		public static String INSTANCIA_EUREKA_03 = "ORGANIZATION-SERVICE";
-		 
-		public static String SERVICE_NAME_01 = "employeeservice";  
-		public static String SERVICE_NAME_02 = "departmentservice"; 
-		public static String SERVICE_NAME_03 = "organizationservice";
- 
-		public static String HTTP_METHOD_01 = "get";  
-		public static String HTTP_METHOD_02 = "post";  
 		
-		public String IP_APP      = "1.1.1.1";
-		public String USUARIO_APP = "RGUERRA";
-		public String MSJ_APP_OK  = "PROCESO OK";
+		//----------------------------------------------------------------------------------------------------------------------------//
+		//[EMPLEADOS]: 
+		@Value( "${propiedades.oracle.empleados.package}" )           //ACCESO: [propiedades.oracle.empleados.package]
+		public String oracle_empleados_package;  
+	    
+		@Value( "${propiedades.oracle.empleados.procedure01}" )       //ACCESO: [propiedades.oracle.empleados.procedure01]
+		public String oracle_empleados_procedure01; 
+		
+		@Value( "${propiedades.oracle.empleados.procedure02}" )       //ACCESO: [propiedades.oracle.empleados.procedure02]
+		public String oracle_empleados_procedure02; 
+		
+		@Value( "${propiedades.oracle.empleados.procedure03}" )       //ACCESO: [propiedades.oracle.empleados.procedure03]
+		public String oracle_empleados_procedure03; 
+		
+		@Value( "${propiedades.oracle.empleados.procedure04}" )       //ACCESO: [propiedades.oracle.empleados.procedure04]
+		public String oracle_empleados_procedure04; 
+		
+		
+		//[DEPARTAMENTOS]: 
+		@Value( "${propiedades.oracle.departamentos.package}" )       //ACCESO: [propiedades.oracle.departamentos.package]
+		public String oracle_departamentos_package;  
+	    
+		@Value( "${propiedades.oracle.departamentos.procedure01}" )   //ACCESO: [propiedades.oracle.departamentos.procedure01]
+		public String oracle_departamentos_procedure01; 
+		
+		@Value( "${propiedades.oracle.departamentos.procedure02}" )   //ACCESO: [propiedades.oracle.departamentos.procedure02]
+		public String oracle_departamentos_procedure02; 
+		
+		@Value( "${propiedades.oracle.departamentos.procedure03}" )   //ACCESO: [propiedades.oracle.departamentos.procedure03]
+		public String oracle_departamentos_procedure03;
+		
+		@Value( "${propiedades.oracle.departamentos.procedure04}" )   //ACCESO: [propiedades.oracle.departamentos.procedure04]
+		public String oracle_departamentos_procedure04;
+		
+		
+		//[ORGANIZACIONES]: 
+		@Value( "${propiedades.oracle.organizaciones.package}" )       //ACCESO: [propiedades.oracle.organizaciones.package]
+		public String oracle_organizaciones_package;  
+	    
+		@Value( "${propiedades.oracle.organizaciones.procedure01}" )   //ACCESO: [propiedades.oracle.organizaciones.procedure01]
+		public String oracle_organizaciones_procedure01; 
+		
+		@Value( "${propiedades.oracle.organizaciones.procedure02}" )   //ACCESO: [propiedades.oracle.organizaciones.procedure02]
+		public String oracle_organizaciones_procedure02; 
+		
+		@Value( "${propiedades.oracle.organizaciones.procedure03}" )   //ACCESO: [propiedades.oracle.organizaciones.procedure03]
+		public String oracle_organizaciones_procedure03; 	
+		//----------------------------------------------------------------------------------------------------------------------------//
+  
+		
+		public static String IP_APP_OK      = "1.1.1.1";
+		public static String USUARIO_APP_OK = "RGUERRA"; 
+		
+		public static String IP_APP_NOK      = "1.1.1.1";
+		public static String NOMBRE_APP_NOK  = "IL";
+		public static String USUARIO_APP_NOK = "RGUERRA";
+		public static String COD_APP_NOK     = "-1";
+		public static String COD_APP_OK      = "0";
+		public static String MSJ_APP_NOK     = "ERROR EN EL PROCESO: ";
+		public static String MSJ_APP_OK      = "PROCESO OK";
 		
  }
+
+ 
