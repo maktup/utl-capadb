@@ -13,6 +13,7 @@ import pe.com.capacitacion.dto.DBResponseEmpMsg;
 import pe.com.capacitacion.dto.ResponseEmpMsg; 
 import pe.com.capacitacion.exception.AuditoriaEmpException;
 import pe.com.capacitacion.properties.ConfigurationData_01;
+import pe.com.capacitacion.properties.ConfigurationData_02;
 import pe.com.capacitacion.util.Constantes; 
 
 /**
@@ -32,10 +33,13 @@ import pe.com.capacitacion.util.Constantes;
 		@Autowired
 		private EmpleadoDao empleadoDao;  
 		
-		
         @Autowired
         private ConfigurationData_01 objConfigurationData01;   //ACCESO: inicia con [grupoconfig01]  
  
+        @Autowired
+        private ConfigurationData_02 objConfigurationData02;   //ACCESO: inicia con [grupoconfig02] 
+        
+        
 	   /**
 	    * agregarOrganizacionService 	
 	    * @param  empleado
@@ -50,7 +54,8 @@ import pe.com.capacitacion.util.Constantes;
 			   Auditoria        objAuditoria         = null; 
 			   
 			   try{
-				   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01); 
+				   //Variables de Entorno: 
+				   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01, this.objConfigurationData02 );
 			       objDBResponseEmplMsg = this.empleadoDao.agregarEmpleado( empleado );    
  			   } 
 			   catch( Exception e ){ 
@@ -83,7 +88,8 @@ import pe.com.capacitacion.util.Constantes;
 			   Auditoria        objAuditoria         = null; 
 			   
 			   try{
-				   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01); 
+				   //Variables de Entorno: 
+				   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01, this.objConfigurationData02 );
 			       objDBResponseEmplMsg = this.empleadoDao.eliminarEmpleado( id.intValue() );    
  			   } 
 			   catch( Exception e ){ 
@@ -115,7 +121,8 @@ import pe.com.capacitacion.util.Constantes;
 			   Auditoria        objAuditoria         = null; 
 		 
 			   try{
-				   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01); 
+				   //Variables de Entorno: 
+				   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01, this.objConfigurationData02 );
 				   objDBResponseEmplMsg = this.empleadoDao.consultarEmpleados( 0 ); //LISTA COMPLETA.
 			   } 
 			   catch( Exception e ){ 
@@ -149,7 +156,8 @@ import pe.com.capacitacion.util.Constantes;
 			   Auditoria        objAuditoria         = null; 
 		 
 			   try{
-				   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01); 
+				   //Variables de Entorno: 
+				   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01, this.objConfigurationData02 );
 				   objDBResponseEmplMsg = this.empleadoDao.consultarEmpleados( id.intValue() ); //OBJETO
 			   } 
 			   catch( Exception e ){ 
@@ -183,7 +191,8 @@ import pe.com.capacitacion.util.Constantes;
 			   Auditoria        objAuditoria         = null; 
 		 
 			   try{
-				   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01); 
+				   //Variables de Entorno: 
+				   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01, this.objConfigurationData02 );
 				   objDBResponseEmplMsg = this.empleadoDao.consultarEmpleados_x_departamento( idDepartamento.intValue() ); //LISTA
 			   } 
 			   catch( Exception e ){ 
@@ -206,18 +215,23 @@ import pe.com.capacitacion.util.Constantes;
 	   /**
 	    * mostrarVariablesEntorno
 	    * @param constantesParam
-	    * @param objConfigurationData01Param 
+	    * @param objConfigurationData01Param
+	    * @param objConfigurationData02Param
 	    **/
-        private void mostrarVariablesEntorno( Constantes constantesParam, ConfigurationData_01 objConfigurationData01Param ){
-        	    log.info( "-----> Empleado 'mostrarVariablesEntorno'" );
+        private void mostrarVariablesEntorno( Constantes constantesParam, ConfigurationData_01 objConfigurationData01Param, ConfigurationData_02 objConfigurationData02Param ){ 
+        	    log.info( "-----> Departamento 'mostrarVariablesEntorno'" );
         	    
 			    String vNombreServicio  = constantesParam.nombreServicio; 
 			    String vValor_01        = constantesParam.valor01; 
 			    String vNombres         = objConfigurationData01Param.getNombres();
-			    String vDni             = objConfigurationData01Param.getDni(); 	
+			    String vDni             = objConfigurationData01Param.getDni(); 		
+			    String vDnsEmployee     = objConfigurationData02Param.getEmployee(); 
+			    String vDnsDepartment   = objConfigurationData02Param.getDepartment(); 
+			    String vDnsOrganization = objConfigurationData02Param.getOrganization();  
 			   
 			    log.info( "vNombreServicio: [" + vNombreServicio + "], vValor_01: [" + vValor_01 + "], vNombres: [" + vNombres + "], vDni: [" + vDni + "]" ); 
+			    log.info( "vDnsEmployee: [" + vDnsEmployee + "], vDnsDepartment: [" + vDnsDepartment + "], vDnsOrganization: [" + vDnsOrganization + "]" ); 
         }
-		
+ 
  }
  

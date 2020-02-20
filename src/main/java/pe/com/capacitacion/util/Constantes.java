@@ -28,6 +28,20 @@ import org.springframework.stereotype.Component;
 		public Integer oracle_timeout; 
  
 		
+		//[DNS]
+	    @Value( "${ingress.dns.employee}" )           //ACCESO: al valor REMOTO [ingress.dns.employee]
+	    public String ingressEmployee;
+		
+	    @Value( "${ingress.dns.department}" )         //ACCESO: al valor REMOTO [ingress.dns.department]
+	    public String ingressDepartment;
+	    
+	    @Value( "${ingress.dns.organization}" )       //ACCESO: al valor REMOTO [ingress.dns.organization]
+	    public String ingressOrganization;
+	   
+	    @Value( "${ingress.dns.utlcapadb}" )          //ACCESO: al valor REMOTO [ingress.dns.utlcapadb]
+	    public String ingressUtiCapadb;
+	    
+		
 	    //[JAEGER]
 	    @Value( "${opentracing.jaeger.http-sender.url}" )    //ACCESO: al valor REMOTO [jeaguer.conexion.url.server]
 	    public String jeagerUrlServer;
