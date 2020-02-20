@@ -10,25 +10,33 @@
 	<description>utl-capadb</description>
     <packaging>jar</packaging>
     <version>1.0.0</version>  
-     
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId> 
+    
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.0.5.RELEASE</version> 
-		<relativePath/> 
-	</parent> 
+        <relativePath/>  
+    </parent> 
        
 	<properties>
 		<project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding> 
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 		<spring-boot-admin.version>2.0.3</spring-boot-admin.version>
-		<spring.framework.version>5.0.3.RELEASE</spring.framework.version>
-		<springfox-version>2.7.0</springfox-version>
+	    <springfox-version>2.7.0</springfox-version>
 	</properties>
- 
+	 
 	<dependencyManagement>
 		<dependencies>
+		    <!-- IMPORTANTE: [BOOT-ADMIN CLIENT] -->
+			<dependency>
+				<groupId>de.codecentric</groupId>
+				<artifactId>spring-boot-admin-dependencies</artifactId>
+				<version>${spring-boot-admin.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-dependencies</artifactId>
@@ -74,13 +82,20 @@
 			<artifactId>spring-cloud-starter-zipkin</artifactId> 
 		</dependency>		
  
- 	    <!-- IMPORTANTE: [BOOT-ADMIN CLIENT] -->
+	    <!-- IMPORTANTE: [BOOT-ADMIN CLIENT] -->
 		<dependency>
 			<groupId>de.codecentric</groupId>
 			<artifactId>spring-boot-admin-starter-client</artifactId>
 			<version>2.1.6</version> 
 		</dependency>
- 
+		
+		<!-- 
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+         -->
+         
 	    <!-- IMPORTANTE: [HYSTRIX], control de FALLAS en CASCADA -->	
 		<dependency>
 		    <groupId>org.springframework.cloud</groupId> 
@@ -92,8 +107,8 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId> 
 		</dependency>
- 
- 	    <!-- IMPORTANTE: [KUBERNETES] -->
+        
+	    <!-- IMPORTANTE: [KUBERNETES] -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-kubernetes-config</artifactId>
@@ -112,20 +127,20 @@
 			<artifactId>micrometer-core</artifactId>
 			<version>1.3.2</version>
 		</dependency>
- 
-		<!-- IMPORTANTE: [JAEGER- CLIENT] -->		
-	    <dependency>
-	        <groupId>io.jaegertracing</groupId>
-	        <artifactId>jaeger-core</artifactId>
-	        <version>0.27.0</version>
-	    </dependency>
-	    
+   
+		<!-- IMPORTANTE: [JAEGER- CLIENT] -->  
 		<dependency>
-		    <groupId>io.opentracing.contrib</groupId>
-		    <artifactId>opentracing-spring-web-autoconfigure</artifactId>
-		    <version>0.3.2</version>
+		  <groupId>io.opentracing.contrib</groupId>
+		  <artifactId>opentracing-spring-web-autoconfigure</artifactId>
+		  <version>0.3.2</version>
 		</dependency>
- 
+		
+		<dependency>
+		  <groupId>io.jaegertracing</groupId>
+		  <artifactId>jaeger-core</artifactId>
+		  <version>0.27.0</version>
+		</dependency>	  
+	 
 		<!-- IMPORTANTE: [BASE DE DATOS] -->
 		<dependency>
 			<groupId>commons-dbutils</groupId>
@@ -156,7 +171,7 @@
             <artifactId>springfox-swagger-ui</artifactId>
             <version>${springfox-version}</version>
         </dependency>
- 
+  
 		<!-- OTROS -->	
 		<dependency>
 		    <groupId>com.google.code.gson</groupId>
@@ -164,13 +179,18 @@
 		    <version>2.8.6</version>
 		</dependency>
 				
- 		<dependency>
+		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<version>1.18.10</version>
-			<scope>provided</scope>
-		</dependency>		
+			<optional>true</optional>
+		</dependency>			 
  
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>2.9.0.pr2</version>
+		</dependency>
+		
 	</dependencies>
 
 	<build>
@@ -182,12 +202,12 @@
 		</plugins>
 	</build>
 
-	<!-- ACCESO 'REPOSITORIO CENTRAL' - [NEXUS], requiere tener ACTIVO el 'NEXUS2' localmente & publico por: 'NO-IP' -->
+	<!-- ACCESO 'REPOSITORIO CENTRAL' - [NEXUS], requiere tener ACTIVO el 'NEXUS2' localmente & publico por: 'NO-IP' 
 	<repositories>
 		<repository>
 			<id>repoCentral_TallerMicroservicios</id>
 			<name>Repositorio CENTRAL proporcionado por NEXUS 2</name>
-			<url>http://repositorio-nexus.ddns.net:8081/nexus/content/repositories/Repositorio_TallerMicroservicios_releases/</url>  
+			<url>http://repositorio-nexus.ddns.net:8081/nexus/content/repositories/Repositorio_TallerMicroservicios_releases/</url> 
 			<releases>
 				<enabled>true</enabled>
 			</releases>
@@ -196,6 +216,7 @@
 			</snapshots>
 		</repository>
 	</repositories>	
-   
+    -->
+    
 </project>
 

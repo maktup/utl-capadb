@@ -26,8 +26,13 @@ import org.springframework.stereotype.Component;
 	    
 		@Value( "${propiedades.oracle.timeout}" )     //ACCESO: [propiedades.oracle.timeout]
 		public Integer oracle_timeout; 
+ 
 		
+	    //[JAEGER]
+	    @Value( "${opentracing.jaeger.http-sender.url}" )    //ACCESO: al valor REMOTO [jeaguer.conexion.url.server]
+	    public String jeagerUrlServer;
 		
+	    
 		//----------------------------------------------------------------------------------------------------------------------------//
 		//[EMPLEADOS]: 
 		@Value( "${propiedades.oracle.empleados.package}" )           //ACCESO: [propiedades.oracle.empleados.package]

@@ -1,23 +1,30 @@
 package pe.com.capacitacion;
 
 import javax.sql.DataSource; 
-import org.springframework.beans.factory.annotation.Qualifier;
+import io.opentracing.Tracer;
+import io.jaegertracing.Configuration;
+import pe.com.capacitacion.util.Constantes;
+import io.jaegertracing.samplers.ConstSampler;
+import springfox.documentation.service.ApiInfo;
+import springfox.documentation.service.Contact;
 import org.springframework.boot.SpringApplication;
+import org.springframework.context.annotation.Bean; 
+import springfox.documentation.spi.DocumentationType;
+import org.springframework.boot.jdbc.DataSourceBuilder;
+import springfox.documentation.spring.web.plugins.Docket;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.cloud.openfeign.EnableFeignClients;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan; 
+import io.jaegertracing.Configuration.ReporterConfiguration;
+import io.jaegertracing.Configuration.SamplerConfiguration;
+import io.jaegertracing.Configuration.SenderConfiguration;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
-import springfox.documentation.service.ApiInfo;
-import springfox.documentation.service.Contact;
-import springfox.documentation.spi.DocumentationType;
-import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
  
 /**
@@ -29,10 +36,13 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  @EnableHystrix             //IMPORTANTE: 'HYSTRIX' 
  @EnableFeignClients        //IMPORTANTE: 'FEIGN CLIENT'
  @EnableSwagger2            //IMPORTANTE: 'SWAGGER'
- @ComponentScan( basePackages = { "pe.com.capacitacion" } )
+ //@ComponentScan( basePackages = { "pe.com.capacitacion" } ) 
  public class MainApp{
-	
-	    public static final String PAQUETE_SCAN = "pe.com.capacitacion.controller";
+	    
+		@Autowired
+		private Constantes constantes; 
+	 
+	    public static final String PAQUETE_SWAGGER_SCAN = "pe.com.capacitacion.controller";
 	 
 	   /**
 	    * main 
@@ -76,14 +86,28 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 	    @Bean
 	    public Docket customImplementation(){
-	        return new Docket( DocumentationType.SWAGGER_2 )
-	                .select()
-	                .apis( RequestHandlerSelectors.basePackage( PAQUETE_SCAN ) )
-	                .paths( PathSelectors.any() ) 
-                    .build() 
-                    .apiInfo( this.apiInfo() );
+	           return new Docket( DocumentationType.SWAGGER_2 )
+		                  .select()
+		                  .apis( RequestHandlerSelectors.basePackage( PAQUETE_SWAGGER_SCAN ) )
+		                  .paths( PathSelectors.any() ) 
+	                      .build() 
+	                      .apiInfo( this.apiInfo() );
 	    }
 	    //---------------------------------------- [SWAGGER] ----------------------------------------// 
+ 
+	    
+	    //----------------------------------------- [JEAGER] ----------------------------------------//   
+		@Bean
+	    public Tracer jaegerAlertTracer(){ 
+	           SamplerConfiguration   objSamplerConfig  = new SamplerConfiguration().withType( ConstSampler.TYPE ).withParam( 1 ); 
+	           SenderConfiguration    objSenderConfig   = SenderConfiguration.fromEnv().withEndpoint( this.constantes.jeagerUrlServer );
+	           ReporterConfiguration  objReporterConfig = ReporterConfiguration.fromEnv().withLogSpans( false ).withSender( objSenderConfig );
+	           Configuration          objConfig         = new Configuration( this.constantes.nombreMicroServicio ).withSampler( objSamplerConfig ).withReporter( objReporterConfig );
+	           Tracer                 objTracer         = objConfig.getTracer();
+	           
+	           return objTracer;
+	    }   
+	    //----------------------------------------- [JEAGER] ----------------------------------------// 
 		
  } 
 
