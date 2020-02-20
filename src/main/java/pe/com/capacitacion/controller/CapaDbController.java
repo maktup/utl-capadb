@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController; 
+import org.springframework.web.bind.annotation.RestController;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import pe.com.capacitacion.bean.Departamento;
 import pe.com.capacitacion.bean.Empleado;
@@ -19,6 +21,7 @@ import pe.com.capacitacion.dto.ResponseOrgMsg;
 import pe.com.capacitacion.service.DepartamentoService;
 import pe.com.capacitacion.service.EmpleadoService;
 import pe.com.capacitacion.service.OrganizacionService; 
+
 /**
  * CapaDbController
  * @author cguerra
@@ -26,6 +29,7 @@ import pe.com.capacitacion.service.OrganizacionService;
  @Slf4j      //Autogenerar LOG4J.
  @RestController 
  @RequestMapping( "/utlcapadb" ) //NO USAR: [server.servlet.context-path], 'BOOT-ADMIN' reconocera el 'ACTUATOR'.
+ @Api( value="CapaDbController", description="'CONTRATO/API' para el utilitario 'CAPADB'." )
  public class CapaDbController{
  
 		@Autowired
@@ -36,7 +40,7 @@ import pe.com.capacitacion.service.OrganizacionService;
 		
 		@Autowired
 		private OrganizacionService organizacionService; 
- 
+		
 		
 		/*************************************************************************************/
 		/************************************ [EMPLEADOS] ************************************/
@@ -47,9 +51,9 @@ import pe.com.capacitacion.service.OrganizacionService;
         * @return ResponseEntity<ResponseEmpMsg>
         **/
 		@PostMapping( "/post/empleados" )
+	    @ApiOperation( value="Funcionalidad para [CREAR] una ENTIDAD de tipo Empleado.", nickname="agregarEmpleado", notes="Funcionalidad para [CREAR] una ENTIDAD de tipo Empleado." )
 		public ResponseEntity<ResponseEmpMsg> agregarEmpleado( @RequestBody Empleado empleado ){ 
 			   log.info( "-----> CapaDbController 'agregarEmpleado': {}", empleado ); 
-			   //this.jaegerAlertTracer(); 
 			   
 			   //Ejecutar:  
 			   ResponseEntity<ResponseEmpMsg> objResponseMsg = this.empleadoService.agregarEmpleadoService( empleado ); 
@@ -61,9 +65,9 @@ import pe.com.capacitacion.service.OrganizacionService;
         * @return ResponseEntity<ResponseEmpMsg>
         **/
 		@GetMapping( "/get/empleados" )
+	    @ApiOperation( value="Funcionalidad para [CONSULTAR] una ENTIDAD de tipo Empleado completa.", nickname="consultarEmpleadosAll", notes="Funcionalidad para [CONSULTAR] una ENTIDAD de tipo Empleado completa." )
 		public ResponseEntity<ResponseEmpMsg> consultarEmpleadosAll(){
 			   log.info( "-----> CapaDbController 'consultarEmpleadosAll'" ); 
-			   //this.jaegerAlertTracer(); 
 			   
 			   //Ejecutar: 
 			   ResponseEntity<ResponseEmpMsg> objResponseMsg = this.empleadoService.consultarEmpleadosAllService(); 
@@ -76,9 +80,9 @@ import pe.com.capacitacion.service.OrganizacionService;
         * @return ResponseEntity<ResponseEmpMsg>
         **/
 		@GetMapping( "/get/empleados/{id}" )
+	    @ApiOperation( value="Funcionalidad para [CONSULTAR] una ENTIDAD de tipo Empleado por ID.", nickname="consultarEmpleadosPorId", notes="Funcionalidad para [CONSULTAR] una ENTIDAD de tipo Empleado por ID." )
 		public ResponseEntity<ResponseEmpMsg> consultarEmpleadosPorId( @PathVariable( "id" ) Long id ){
 			   log.info( "-----> CapaDbController 'consultarEmpleadosPorId': id={}", id ); 
-			   //this.jaegerAlertTracer(); 
 			   
 			   //Ejecutar: 
 			   ResponseEntity<ResponseEmpMsg> objResponseMsg = this.empleadoService.consultarEmpleadosPorIdService( id );
@@ -91,10 +95,10 @@ import pe.com.capacitacion.service.OrganizacionService;
         * @return ResponseEntity<ResponseEmpMsg>
         **/
 		@GetMapping( "/get/empleados-departamento/{idDep}" )
+	    @ApiOperation( value="Funcionalidad para [CONSULTAR] una ENTIDAD de tipo Empleado por IDDEP.", nickname="consultarEmpleados_x_departamento", notes="Funcionalidad para [CONSULTAR] una ENTIDAD de tipo Empleado por IDDEP." )
 		public ResponseEntity<ResponseEmpMsg> consultarEmpleados_x_departamento( @PathVariable( "idDep" ) Long idDep ){
 			   log.info( "-----> CapaDbController 'consultarEmpleados_x_departamento': idDep={}", idDep ); 
-			   //this.jaegerAlertTracer(); 
-			   
+			    
 			   //Ejecutar: 
 			   ResponseEntity<ResponseEmpMsg> objResponseMsg = this.empleadoService.consultarEmpleados_x_departamentoService( idDep );
 			   return objResponseMsg; 
@@ -106,9 +110,9 @@ import pe.com.capacitacion.service.OrganizacionService;
         * @return ResponseEntity<ResponseEmpMsg>
         **/
 		@DeleteMapping( "/delete/empleados/{id}" )
+	    @ApiOperation( value="Funcionalidad para [ELIMINAR] una ENTIDAD de tipo Empleado por ID.", nickname="eliminarEmpleado", notes="Funcionalidad para [ELIMINAR] una ENTIDAD de tipo Empleado por ID." )
 		public ResponseEntity<ResponseEmpMsg> eliminarEmpleado( @PathVariable( "id" ) Long id ){
 			   log.info( "-----> CapaDbController 'eliminarEmpleado': id={}", id ); 
-			   //this.jaegerAlertTracer(); 
 			   
 			   //Ejecutar: 
 			   ResponseEntity<ResponseEmpMsg> objResponseMsg = this.empleadoService.eliminarEmpleadoService( id );
@@ -125,10 +129,10 @@ import pe.com.capacitacion.service.OrganizacionService;
         * @return ResponseEntity<ResponseDepMsg>
         **/
 		@PostMapping( "/post/departamentos" )
+	    @ApiOperation( value="Funcionalidad para [CREAR] una ENTIDAD de tipo Departamento.", nickname="agregarDepartamento", notes="Funcionalidad para [CREAR] una ENTIDAD de tipo Empleado." )
 		public ResponseEntity<ResponseDepMsg> agregarDepartamento( @RequestBody Departamento departamento ){
 			   log.info( "-----> CapaDbController 'agregarDepartamento': {}", departamento ); 
-			   //this.jaegerAlertTracer(); 
-			   
+			  
 			   //Ejecutar: 
 			   ResponseEntity<ResponseDepMsg> objResponseMsg = this.departamentoService.agregarDepartamentoService( departamento );  
 			   return objResponseMsg; 
@@ -139,9 +143,9 @@ import pe.com.capacitacion.service.OrganizacionService;
         * @return ResponseEntity<ResponseDepMsg>
         **/
 		@GetMapping( "/get/departamentos" )
+	    @ApiOperation( value="Funcionalidad para [CONSULTAR] una ENTIDAD de tipo Departamento completa.", nickname="consultarDepartamentosAll", notes="Funcionalidad para [CONSULTAR] una ENTIDAD de tipo Departamento completa." )  
 		public ResponseEntity<ResponseDepMsg> consultarDepartamentosAll(){ 
 			   log.info( "-----> CapaDbController 'consultarDepartamentosAll'" );
-			   //this.jaegerAlertTracer(); 
 			   
 			   //Ejecutar: 
 			   ResponseEntity<ResponseDepMsg> objResponseMsg = this.departamentoService.consultarDepartamentosAllService(); 	 
@@ -154,10 +158,10 @@ import pe.com.capacitacion.service.OrganizacionService;
         * @return ResponseEntity<ResponseDepMsg>
         **/
 		@GetMapping( "/get/departamentos/{id}" )
+	    @ApiOperation( value="Funcionalidad para [CONSULTAR] una ENTIDAD de tipo Departamento por ID.", nickname="consultarDepartamentosPorId", notes="Funcionalidad para [CONSULTAR] una ENTIDAD de tipo Departamento por ID." )
 		public ResponseEntity<ResponseDepMsg> consultarDepartamentosPorId( @PathVariable( "id" ) Long id ){ 
 			   log.info( "-----> CapaDbController 'consultarDepartamentosPorId': id={}", id );
-			   //this.jaegerAlertTracer(); 
-			   
+			  
 			   //Ejecutar: 
 			   ResponseEntity<ResponseDepMsg> objResponseMsg = this.departamentoService.consultarDepartamentosPorIdService( id ); 
 			   return objResponseMsg; 
@@ -169,10 +173,10 @@ import pe.com.capacitacion.service.OrganizacionService;
         * @return ResponseEntity<ResponseDepMsg>
         **/
 		@GetMapping( "/get/departamentos-organizacion/{idOrg}" )
+	    @ApiOperation( value="Funcionalidad para [CONSULTAR] una ENTIDAD de tipo Departamento por IDORG.", nickname="consultarDepartamentos_x_organizacion", notes="Funcionalidad para [CONSULTAR] una ENTIDAD de tipo Departamento por IDORG." ) 
 		public ResponseEntity<ResponseDepMsg> consultarDepartamentos_x_organizacion( @PathVariable( "idOrg" ) Long idOrg ){
 			   log.info( "-----> CapaDbController 'consultarDepartamentos_x_organizacion': idOrg={}", idOrg ); 
-			   //this.jaegerAlertTracer(); 
-			   
+			    
 			   //Ejecutar: 
 			   ResponseEntity<ResponseDepMsg> objResponseMsg = this.departamentoService.consultarDepartamentos_x_organizacionService( idOrg );
 			   return objResponseMsg; 
@@ -184,9 +188,9 @@ import pe.com.capacitacion.service.OrganizacionService;
         * @return ResponseEntity<ResponseDepMsg>
         **/
 		@DeleteMapping( "/delete/departamentos/{id}" )
+	    @ApiOperation( value="Funcionalidad para [ELIMINAR] una ENTIDAD de tipo Departamento por ID.", nickname="eliminarDepartamento", notes="Funcionalidad para [ELIMINAR] una ENTIDAD de tipo Departamento por ID." )
 		public ResponseEntity<ResponseDepMsg> eliminarDepartamento( @PathVariable( "id" ) Long id ){
 			   log.info( "-----> CapaDbController 'eliminarDepartamento': id={}", id ); 
-			   //this.jaegerAlertTracer(); 
 			   
 			   //Ejecutar: 
 			   ResponseEntity<ResponseDepMsg> objResponseMsg = this.departamentoService.eliminarDepartamentoService( id );
@@ -203,11 +207,11 @@ import pe.com.capacitacion.service.OrganizacionService;
         * agregarOrganizacion
         * @param  organizacion
         * @return ResponseEntity<ResponseOrgMsg>
-        **/
+        **/  
 		@PostMapping( "/post/organizaciones" )
+	    @ApiOperation( value="Funcionalidad para [CREAR] una ENTIDAD de tipo Organizacion.", nickname="agregarOrganizacion", notes="Funcionalidad para [CREAR] una ENTIDAD de tipo Organizacion." )
 		public ResponseEntity<ResponseOrgMsg> agregarOrganizacion( @RequestBody Organizacion organizacion ){ 
 			   log.info( "-----> CapaDbService 'agregarOrganizacion': {}", organizacion ); 
-			   //this.jaegerAlertTracer(); 
 			   
 			   //Ejecutar: 
 			   ResponseEntity<ResponseOrgMsg> objResponseMsg = this.organizacionService.agregarOrganizacionService( organizacion ); 
@@ -219,9 +223,9 @@ import pe.com.capacitacion.service.OrganizacionService;
         * @return ResponseEntity<ResponseOrgMsg>
         **/
 		@GetMapping( "/get/organizaciones" ) 
+	    @ApiOperation( value="Funcionalidad para [CONSULTAR] una ENTIDAD de tipo Organizacion completa.", nickname="consultarOrganizacionesAll", notes="Funcionalidad para [CONSULTAR] una ENTIDAD de tipo Organizacion completa." )  
 		public ResponseEntity<ResponseOrgMsg> consultarOrganizacionesAll(){
 			   log.info( "-----> CapaDbService 'consultarOrganizacionesAll'" ); 
-			   //this.jaegerAlertTracer(); 
 			   
 			   //Ejecutar: 
 			   ResponseEntity<ResponseOrgMsg> objResponseMsg = this.organizacionService.consultarOrganizacionesAllService(); 
@@ -234,9 +238,9 @@ import pe.com.capacitacion.service.OrganizacionService;
         * @return ResponseEntity<ResponseOrgMsg>
         **/
 		@GetMapping( "/get/organizaciones/{id}" ) 
+	    @ApiOperation( value="Funcionalidad para [CONSULTAR] una ENTIDAD de tipo Organizacion por ID.", nickname="consultarOrganizacionesPorId", notes="Funcionalidad para [CONSULTAR] una ENTIDAD de tipo Organizacion por ID." )
 		public ResponseEntity<ResponseOrgMsg> consultarOrganizacionesPorId( @PathVariable( "id" ) Long id ){ 
 			   log.info( "-----> CapaDbService 'consultarOrganizacionesPorId': id={}", id );  
-			   //this.jaegerAlertTracer(); 
 			   
 			   //Ejecutar: 
 			   ResponseEntity<ResponseOrgMsg> objResponseMsg = this.organizacionService.consultarOrganizacionesPorIdService( id ); 
@@ -249,9 +253,9 @@ import pe.com.capacitacion.service.OrganizacionService;
         * @return ResponseEntity<ResponseOrgMsg>
         **/
 		@DeleteMapping( "/delete/organizaciones/{id}" )
+	    @ApiOperation( value="Funcionalidad para [ELIMINAR] una ENTIDAD de tipo Organizacion por ID.", nickname="eliminarOrganizacion", notes="Funcionalidad para [ELIMINAR] una ENTIDAD de tipo Organizacion por ID." ) 
 		public ResponseEntity<ResponseOrgMsg> eliminarOrganizacion( @PathVariable( "id" ) Long id ){
 			   log.info( "-----> CapaDbController 'eliminarOrganizacion': id={}", id ); 
-			   //this.jaegerAlertTracer(); 
 			   
 			   //Ejecutar: 
 			   ResponseEntity<ResponseOrgMsg> objResponseMsg = this.organizacionService.eliminarOrganizacionService( id );

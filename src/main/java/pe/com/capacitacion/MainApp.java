@@ -35,8 +35,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  @EnableDiscoveryClient     //IMPORTANTE: 'EUREKA CLIENT' 
  @EnableHystrix             //IMPORTANTE: 'HYSTRIX' 
  @EnableFeignClients        //IMPORTANTE: 'FEIGN CLIENT'
- @EnableSwagger2            //IMPORTANTE: 'SWAGGER'
- //@ComponentScan( basePackages = { "pe.com.capacitacion" } ) 
+ @EnableSwagger2            //IMPORTANTE: 'SWAGGER' 
  public class MainApp{
 	    
 		@Autowired
