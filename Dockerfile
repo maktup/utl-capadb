@@ -46,7 +46,7 @@ ENV APP_HOME /app
 ENV NOMBRE_MICROSERVICIO=utl-capadb
 #ENV BOOTADMIN_USUARIO=admin   [Manejado con SECRETs]
 #ENV BOOTADMIN_PASSWORD=admin  [Manejado con SECRETs]
-ENV JEAGER_URL=http://capacitacion.microservicios.jaeger-server-view/api/traces 
+ENV JEAGER_URL=http://capacitacion.microservicios.jaeger-server-view/api/traces
 ENV BOOTADMIN_URL=http://capacitacion.microservicios.boot-admin-server
 ENV SERVICE_DNS_URL=http://capacitacion.microservicios.utlcapadb
 ENV ZIPKIN_URL=http://capacitacion.microservicios.zipkin-server
