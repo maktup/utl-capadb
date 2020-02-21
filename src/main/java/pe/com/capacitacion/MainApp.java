@@ -15,8 +15,7 @@ import springfox.documentation.spring.web.plugins.Docket;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.boot.context.properties.ConfigurationProperties; 
 import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import io.jaegertracing.Configuration.ReporterConfiguration;
@@ -32,7 +31,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  * @author cguerra
  **/
  @SpringBootApplication
- @EnableDiscoveryClient     //IMPORTANTE: 'EUREKA CLIENT' 
  @EnableHystrix             //IMPORTANTE: 'HYSTRIX' 
  @EnableFeignClients        //IMPORTANTE: 'FEIGN CLIENT'
  @EnableSwagger2            //IMPORTANTE: 'SWAGGER' 

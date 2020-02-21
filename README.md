@@ -11,7 +11,7 @@ http://editor.swagger.io/
 
 UNA VEZ DESPLEGADO EL 'MICROSERVICIO' ACCEDER A:  
 http://capacitacion.microservicios.utlcapadb/swagger-ui.html
-http://capacitacion.microservicios.utlcapadb/swagger
+http://capacitacion.microservicios.utlcapadb/utlcapadb/swagger
 
 
 *********************************************************************************
