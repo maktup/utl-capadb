@@ -1,5 +1,7 @@
 package pe.com.capacitacion.controller;
  
+import io.swagger.annotations.Api;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -9,9 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import io.swagger.annotations.Api;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView; 
 import io.swagger.annotations.ApiOperation;
-import lombok.extern.slf4j.Slf4j;
 import pe.com.capacitacion.bean.Departamento;
 import pe.com.capacitacion.bean.Empleado;
 import pe.com.capacitacion.bean.Organizacion;
@@ -262,5 +264,25 @@ import pe.com.capacitacion.service.OrganizacionService;
 			   return objResponseMsg; 
 		}
  
+		
+		/*************************************************************************************/
+		/************************************* [SWAGGER] *************************************/
+		/*************************************************************************************/
+       
+		/**
+        * mostrarContratoSwagger
+        * @param  attributes
+        * @return RedirectView
+        **/
+		@GetMapping( "/swagger" )
+	    public RedirectView mostrarContratoSwagger( RedirectAttributes attributes) {
+			   log.info( "-----> mostrarContratoSwagger"  );
+			
+			   RedirectView objRedirect = new RedirectView(); 
+			   //objRedirect.setUrl( "http://localhost:8093/swagger-ui.html" ); 
+			   objRedirect.setUrl( "/swagger-ui.html" );
+			   return objRedirect; 
+		}
+		
  }
  

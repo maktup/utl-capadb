@@ -1,0 +1,41 @@
+
+#[ENDPOINTS-SERVICE]
+#3_utl-capadb-service_[Endpoits-Service].yml
+
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: oracle-external-ip
+  namespace: default
+  labels:
+    app: microservicio-utl-capadb-service
+    role: backend
+    stage: production
+subsets: 
+  - addresses:
+      #IMPORTANTE: Debe ser una IP-FIJA (SINO CAMBIAR CONSTANTEMENTE). 
+      - ip: 192.168.56.1
+    ports:
+      - name: http
+        #PUERTO de escucha para 'ORACLE'
+        port: 1521
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  #IMPORTANTE: Debe llamarse igual que el 'ENDPOINT' creado.
+  name: oracle-external-ip
+  namespace: default
+  labels:
+    app: microservicio-utl-capadb-service
+    role: backend
+    stage: production
+spec:
+  ports:
+    #IMPORTANTE: Puerto DEFINIDO como INPUT para 'ORACLE'.
+    - name: http
+      port: 1521
+      targetPort: 1521
+  type: NodePort

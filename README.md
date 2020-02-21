@@ -10,7 +10,8 @@ CREAR EL 'CONTRADO/API' ONLINE USANDO:
 http://editor.swagger.io/
 
 UNA VEZ DESPLEGADO EL 'MICROSERVICIO' ACCEDER A:  
-http://localhost:8093/swagger-ui.html
+http://capacitacion.microservicios.utlcapadb/swagger-ui.html
+http://capacitacion.microservicios.utlcapadb/swagger
 
 
 *********************************************************************************
@@ -19,7 +20,7 @@ http://localhost:8093/swagger-ui.html
 Los LINK [GET] son:
 ------------------
 1. consultarEmpleadosAll: [http://localhost:8093/utlcapadb/get/empleados]
-   http://localhost:8093/utlcapadb/get/empleados
+   http://capacitacion.microservicios.utlcapadb/utlcapadb/get/empleados
 
 2. consultarEmpleadosPorId: [http://localhost:8093/utlcapadb/get/empleados/{id}]  
    http://localhost:8093/utlcapadb/get/empleados/1
