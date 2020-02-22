@@ -1,29 +1,30 @@
 package pe.com.capacitacion;
 
-import javax.sql.DataSource; 
-import io.opentracing.Tracer;
-import io.jaegertracing.Configuration;
-import pe.com.capacitacion.util.Constantes;
-import io.jaegertracing.samplers.ConstSampler;
-import springfox.documentation.service.ApiInfo;
-import springfox.documentation.service.Contact;
-import org.springframework.boot.SpringApplication;
-import org.springframework.context.annotation.Bean; 
-import springfox.documentation.spi.DocumentationType;
-import org.springframework.boot.jdbc.DataSourceBuilder;
-import springfox.documentation.spring.web.plugins.Docket;
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.properties.ConfigurationProperties; 
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.context.annotation.Bean; 
+import io.jaegertracing.Configuration;
 import io.jaegertracing.Configuration.ReporterConfiguration;
 import io.jaegertracing.Configuration.SamplerConfiguration;
 import io.jaegertracing.Configuration.SenderConfiguration;
+import io.jaegertracing.samplers.ConstSampler;
+import io.opentracing.Tracer;
+import pe.com.capacitacion.util.Constantes;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.service.ApiInfo;
+import springfox.documentation.service.Contact;
+import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
  
 /**
@@ -38,7 +39,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 	    
 		@Autowired
 		private Constantes constantes; 
-	 
+		
 	    public static final String PAQUETE_SWAGGER_SCAN = "pe.com.capacitacion.controller";
 	 
 	   /**
@@ -103,7 +104,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 	           Tracer                 objTracer         = objConfig.getTracer();
 	           
 	           return objTracer;
-	    }   
+	    }     
 	    //----------------------------------------- [JEAGER] ----------------------------------------// 
 		
  } 
