@@ -16,10 +16,7 @@ import org.springframework.stereotype.Component;
 		@Value( "${propiedades.config.valor_01}" )    //ACCESO: [propiedades.config.valor_01:]
 		public String valor01; 
  
-	    @Value( "${spring.application.name}" )        //ACCESO: al valor REMOTO [spring.application.name]
-	    public String nombreMicroServicio;
-	    
-
+		
 	    //[GENERICOS]
 		@Value( "${propiedades.oracle.owner}" )       //ACCESO: [propiedades.oracle.owner]
 		public String oracle_owner; 
@@ -45,6 +42,9 @@ import org.springframework.stereotype.Component;
 	    //[JAEGER]
 	    @Value( "${opentracing.jaeger.http-sender.url}" )    //ACCESO: al valor REMOTO [jeaguer.conexion.url.server]
 	    public String jeagerUrlServer;
+        
+	    @Value( "${spring.application.name}" )               //ACCESO: al valor REMOTO [spring.application.name]
+	    public String nombreMicroServicio;
 		
 	    
 		//----------------------------------------------------------------------------------------------------------------------------//
