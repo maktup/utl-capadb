@@ -50,7 +50,16 @@ spec:
               secretKeyRef:
                 key: BOOTADMIN_PASSWORD
                 name: utl-capadb-service-secret
-
+          - name: PARAM_ORACLE_USUARIO
+            valueFrom:
+              secretKeyRef:
+                key: ORACLE_USUARIO
+                name: utl-capadb-secret
+          - name: PARAM_ORACLE_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: ORACLE_PASSWORD
+                name: utl-capadb-secret
 ---
 
 apiVersion: v1
