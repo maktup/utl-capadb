@@ -58,6 +58,9 @@ ENV JEAGER_URL=http://capacitacion.microservicios.jaeger-server-view/api/traces
 ENV BOOTADMIN_URL=http://capacitacion.microservicios.boot-admin-server
 ENV SERVICE_DNS_URL=http://capacitacion.microservicios.utlcapadb
 ENV ZIPKIN_URL=http://capacitacion.microservicios.zipkin-server
+
+ENV ORACE_USUARIO=111
+ENV ORACE_PASSWORD=222
 #--------------------------------------------------------------------------------------------#
 
 

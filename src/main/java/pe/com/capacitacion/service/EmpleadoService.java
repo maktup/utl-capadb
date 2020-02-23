@@ -231,6 +231,7 @@ import pe.com.capacitacion.util.Constantes;
 			   
 			    log.info( "vNombreServicio: [" + vNombreServicio + "], vValor_01: [" + vValor_01 + "], vNombres: [" + vNombres + "], vDni: [" + vDni + "]" ); 
 			    log.info( "vDnsEmployee: [" + vDnsEmployee + "], vDnsDepartment: [" + vDnsDepartment + "], vDnsOrganization: [" + vDnsOrganization + "]" );  
+			    log.info( "sbuser: [" + this.constantes.sbuser + "],  sbpass: [" + this.constantes.sbpass + "]" );
         }
  
  }

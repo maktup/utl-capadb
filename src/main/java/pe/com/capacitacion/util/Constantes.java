@@ -108,6 +108,13 @@ import org.springframework.stereotype.Component;
 		public static String MSJ_APP_NOK     = "ERROR EN EL PROCESO: ";
 		public static String MSJ_APP_OK      = "PROCESO OK";
 		
+		
+	    @Value( "${spring.boot.admin.client.username}" )           
+	    public String sbuser;
+	    
+	    @Value( "${spring.boot.admin.client.password}" )           
+	    public String sbpass;
+	    
  }
 
  
