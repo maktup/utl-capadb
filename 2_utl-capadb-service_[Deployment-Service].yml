@@ -11,6 +11,7 @@ metadata:
     app: microservicio-utl-capadb-service
     role: backend
     stage: production
+    version: v1.0.0
 spec:
   replicas: 1
   selector:
@@ -24,40 +25,49 @@ spec:
         version: v1.0.0
     spec:
       containers:                  
-      - name: microservicio-utl-capadb-service
-        image: maktup/utl-capadb:latest
-        imagePullPolicy: Always
-        ports:
-          - containerPort: 8080
-        #--------------------------#  
-        volumeMounts:
-        - mountPath: /app/log
-          name: volumen-logs 
-      volumes:
-      - name: volumen-logs 
-        persistentVolumeClaim:
-          claimName: microservicio-utl-capadb-pvc
-        #--------------------------#  
-        env:
-        #CONFIGURACION DE 'SECRETs': 
-        - name: ORACLE_USER
-          value: cguerra
-          
-        - name: ORACLE_PASSWORD
-          value: 12345678
- 
-        - name: SECRETS_DEMO_USER
-          valueFrom:
-            secretKeyRef:
-              name: utl-capadb-secret
-              key: spring.user.name
-        
-        - name: SECRETS_DEMO_USER_PASSWD
-          valueFrom:
-            secretKeyRef:
-              name: utl-capadb-secret
-              key: spring.user.password
+        - name: microservicio-utl-capadb-service
+          image: maktup/utl-capadb:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          env:
+          #CONFIGURACION DE 'SECRETs':
+          - name: DUMMY_VARIABLE
+            value: javaman
+            
+          - name: BOOTADMIN_USUARIO
+            valueFrom:
+              secretKeyRef:
+                key: BOOTADMIN_PASSWORD
+                name: utl-capadb-secret
+            
+          - name: BOOTADMIN_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: BOOTADMIN_PASSWORD
+                name: utl-capadb-secret
                 
+          - name: ORACLE_USUARIO
+            valueFrom:
+              secretKeyRef:
+                key: ORACLE_USUARIO
+                name: utl-capadb-secret
+            
+          - name: ORACLE_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: ORACLE_PASSWORD
+                name: utl-capadb-secret 
+          #--------------------------#  
+          volumeMounts:
+          - mountPath: /app/log
+            name: volumen-logs 
+      volumes:
+        - name: volumen-logs 
+          persistentVolumeClaim:
+            claimName: microservicio-utl-capadb-pvc
+          #--------------------------#      
+                              
 ---
 
 apiVersion: v1

@@ -95,8 +95,7 @@ import org.springframework.stereotype.Component;
 		@Value( "${propiedades.oracle.organizaciones.procedure03}" )   //ACCESO: [propiedades.oracle.organizaciones.procedure03]
 		public String oracle_organizaciones_procedure03; 	
 		//----------------------------------------------------------------------------------------------------------------------------//
- 
-		
+ 		
 		public static String IP_APP_OK      = "1.1.1.1";
 		public static String USUARIO_APP_OK = "RGUERRA"; 
 		
@@ -107,14 +106,7 @@ import org.springframework.stereotype.Component;
 		public static String COD_APP_OK      = "0";
 		public static String MSJ_APP_NOK     = "ERROR EN EL PROCESO: ";
 		public static String MSJ_APP_OK      = "PROCESO OK";
-		
-		
-	    @Value( "${usuario}" )           
-	    public String sbuser;
-	    
-	    @Value( "${password}" )           
-	    public String sbpass;
-	    
+ 
  }
 
  

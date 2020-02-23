@@ -1,6 +1,7 @@
 package pe.com.capacitacion.service;
  
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service; 
@@ -38,6 +39,9 @@ import pe.com.capacitacion.util.Constantes;
  
         @Autowired
         private ConfigurationData_02 objConfigurationData02;   //ACCESO: inicia con [grupoconfig02] 
+		  
+        @Autowired
+    	private Environment objVariablesEntorno;
         
         
 	   /**
@@ -231,6 +235,9 @@ import pe.com.capacitacion.util.Constantes;
 			   
 			    log.info( "vNombreServicio: [" + vNombreServicio + "], vValor_01: [" + vValor_01 + "], vNombres: [" + vNombres + "], vDni: [" + vDni + "]" ); 
 			    log.info( "vDnsEmployee: [" + vDnsEmployee + "], vDnsDepartment: [" + vDnsDepartment + "], vDnsOrganization: [" + vDnsOrganization + "]" ); 
+			    
+			    log.info( "BOOTADMIN_USUARIO: [" + this.objVariablesEntorno.getProperty( "BOOTADMIN_USUARIO" ) + "],  BOOTADMIN_PASSWORD: [" + this.objVariablesEntorno.getProperty( "BOOTADMIN_PASSWORD" ) + "]" );
+			    log.info( "ORACLE_USUARIO: ["    + this.objVariablesEntorno.getProperty( "ORACLE_USUARIO"    ) + "],  ORACLE_PASSWORD: ["    + this.objVariablesEntorno.getProperty( "ORACLE_PASSWORD"    ) + "]" );   
         }
  
  }
