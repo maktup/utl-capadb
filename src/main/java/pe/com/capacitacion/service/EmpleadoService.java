@@ -232,6 +232,9 @@ import pe.com.capacitacion.util.Constantes;
 			    log.info( "vNombreServicio: [" + vNombreServicio + "], vValor_01: [" + vValor_01 + "], vNombres: [" + vNombres + "], vDni: [" + vDni + "]" ); 
 			    log.info( "vDnsEmployee: [" + vDnsEmployee + "], vDnsDepartment: [" + vDnsDepartment + "], vDnsOrganization: [" + vDnsOrganization + "]" );  
 			    log.info( "sbuser: [" + this.constantes.sbuser + "],  sbpass: [" + this.constantes.sbpass + "]" );
+			    
+			    log.info( "XUSR: [" + System.getProperty("SECRETS_DEMO_USER") + "],  XPASS: [" + System.getProperty("SECRETS_DEMO_USER_PASSWD") + "]" );
+			    log.info( "OUSR: [" + System.getProperty("ORACLE_USER") + "],  OPASS: [" + System.getProperty("ORACLE_PASSWORD") + "]" );
         }
  
  }

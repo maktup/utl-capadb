@@ -45,30 +45,18 @@ spec:
           
         - name: ORACLE_PASSWORD
           value: 12345678
+ 
+        - name: SECRETS_DEMO_USER
+          valueFrom:
+            secretKeyRef:
+              name: utl-capadb-secret
+              key: spring.user.name
         
-        - name: BOOTADMIN_USUARIO
-          valueFrom:
-            secretKeyRef:
-              key: BOOTADMIN_USUARIO
-              name: utl-capadb-secret
-              
-        - name: BOOTADMIN_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              key: BOOTADMIN_PASSWORD
-              name: utl-capadb-secret
-        - name: ORACLE_USER2
-        
+        - name: SECRETS_DEMO_USER_PASSWD
           valueFrom:
             secretKeyRef:
               name: utl-capadb-secret
-              key: db.user.name
-                          
-        - name: ORACLE_PASSWORD2
-          valueFrom:
-            secretKeyRef:
-              name: utl-capadb-secret
-              key: db.user.password
+              key: spring.user.password
                 
 ---
 
