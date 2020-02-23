@@ -95,15 +95,7 @@ import org.springframework.stereotype.Component;
 		@Value( "${propiedades.oracle.organizaciones.procedure03}" )   //ACCESO: [propiedades.oracle.organizaciones.procedure03]
 		public String oracle_organizaciones_procedure03; 	
 		//----------------------------------------------------------------------------------------------------------------------------//
-  
-		
-		@Value( "${spring.datasource.username}" )     //ACCESO: [spring.datasource.username]
-		public String oracle_user; 
-		
-		@Value( "${spring.datasource.password}" )     //ACCESO: [spring.datasource.password]
-		public String oracle_password; 
-		
-		
+ 
 		
 		public static String IP_APP_OK      = "1.1.1.1";
 		public static String USUARIO_APP_OK = "RGUERRA"; 

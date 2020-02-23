@@ -24,42 +24,43 @@ spec:
         version: v1.0.0
     spec:
       containers:                  
-        - name: microservicio-utl-capadb-service
-          image: maktup/utl-capadb:latest
-          imagePullPolicy: Always
-          ports:
-            - containerPort: 8080
-          #--------------------------#  
-          volumeMounts:
-          - mountPath: /app/log
-            name: volumen-logs 
+      - name: microservicio-utl-capadb-service
+        image: maktup/utl-capadb:latest
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 8080
+        #--------------------------#  
+        volumeMounts:
+        - mountPath: /app/log
+          name: volumen-logs 
       volumes:
-        - name: volumen-logs 
-          persistentVolumeClaim:
-            claimName: microservicio-utl-capadb-pvc
-          #--------------------------#  
-          env:
-          #CONFIGURACION DE 'SECRETs': 
-          - name: BOOTADMIN_USUARIO
-            valueFrom:
-              secretKeyRef:
-                key: BOOTADMIN_USUARIO
-                name: utl-capadb-service-secret
-          - name: BOOTADMIN_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                key: BOOTADMIN_PASSWORD
-                name: utl-capadb-service-secret
-          - name: PARAM_ORACLE_USUARIO
-            valueFrom:
-              secretKeyRef:
-                key: ORACLE_USUARIO
-                name: utl-capadb-secret
-          - name: PARAM_ORACLE_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                key: ORACLE_PASSWORD
-                name: utl-capadb-secret
+      - name: volumen-logs 
+        persistentVolumeClaim:
+          claimName: microservicio-utl-capadb-pvc
+        #--------------------------#  
+        env:
+        #CONFIGURACION DE 'SECRETs': 
+        - name: BOOTADMIN_USUARIO
+          valueFrom:
+            secretKeyRef:
+              key: BOOTADMIN_USUARIO
+              name: utl-capadb-secret
+        - name: BOOTADMIN_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: BOOTADMIN_PASSWORD
+              name: utl-capadb-secret
+        - name: ORACLE_USER
+          valueFrom:
+            secretKeyRef:
+              name: utl-capadb-secret
+              key: db.user.name                
+        - name: ORACLE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: utl-capadb-secret
+              key: db.user.password
+                
 ---
 
 apiVersion: v1
