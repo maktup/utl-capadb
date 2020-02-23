@@ -40,22 +40,31 @@ spec:
         #--------------------------#  
         env:
         #CONFIGURACION DE 'SECRETs': 
+        - name: ORACLE_USER
+          value: cguerra
+          
+        - name: ORACLE_PASSWORD
+          value: 12345678
+        
         - name: BOOTADMIN_USUARIO
           valueFrom:
             secretKeyRef:
               key: BOOTADMIN_USUARIO
               name: utl-capadb-secret
+              
         - name: BOOTADMIN_PASSWORD
           valueFrom:
             secretKeyRef:
               key: BOOTADMIN_PASSWORD
               name: utl-capadb-secret
-        - name: ORACLE_USER
+        - name: ORACLE_USER2
+        
           valueFrom:
             secretKeyRef:
               name: utl-capadb-secret
-              key: db.user.name                
-        - name: ORACLE_PASSWORD
+              key: db.user.name
+                          
+        - name: ORACLE_PASSWORD2
           valueFrom:
             secretKeyRef:
               name: utl-capadb-secret
