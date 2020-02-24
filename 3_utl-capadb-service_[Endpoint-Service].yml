@@ -1,6 +1,6 @@
 
 #[ENDPOINTS-SERVICE]
-#3_utl-capadb-service_[Endpoits-Service].yml
+#3_utl-capadb-service_[Endpoint-Service].yml
 
 apiVersion: v1
 kind: Endpoints
