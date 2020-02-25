@@ -127,4 +127,31 @@ DETALLE:
 * Para INFORMACIÓN interna del MICROSERVICIO, apoyarse en ACTUATOR ingresando a: 'http://capacitacion.microservicios.utlcapadb/actuator'
 * Para acceder a 'PHOMETHEUS' acceder por medio de ACTUATOR asi: 'http://capacitacion.microservicios.employee/actuator/prometheus'
 
+
  
+PASOS 'AUTOSCALAMIENTO': [Tiene que tener un LIMMIT en el CPU para el POD, sino NO funciona]:
+-------------------------------------------------------------------------------------------- 
+ 
+Este sera aplicado solo al 'MICROSERVICIOS' UTILITARIO.
+ 
+    
+ 0. DEBE ESTAR ACTIVO EL 'ADD-ON':
+    minikube addons list     
+    minikube addons enable metrics-server   
+     
+ 1. CREAR & ASIGNAR 'AUTOSCALING':
+    kubectl autoscale deployment utl-capadb-service --min=1 --max=3 --cpu-percent=50
+ 
+ 2. OBTENER EL 'SCRIPT .YML' GENERADO:
+    kubectl get hpa -o yaml utl-capadb-service
+ 
+ 3. OBTENER DETALLES 'AUTOSCALING':
+    kubectl get pods,hpa -o wide
+   
+ 4. OBTENER DETALLES DEL 'NIVEL DE CPU' EJECUTANDOSE EN EL POD.
+    kubectl top pod   
+       
+ 5. ESTRESAR 'MICROSERVICIO':
+    while true; do curl -s http://capacitacion.microservicios.utlcapadb/utlcapadb/get/empleados ; done 
+ 
+   

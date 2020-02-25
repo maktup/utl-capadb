@@ -1,0 +1,37 @@
+
+#[ENDPOINTS-SERVICE]
+#4_utl-capadb-service_[HorizontalPodAutoscaler].yml
+# OBJETO utilizado para el AUTOSCALING de los PODs. 
+
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  annotations:
+    autoscaling.alpha.kubernetes.io/conditions: '[{"type":"AbleToScale","status":"True","lastTransitionTime":"2020-02-25T19:33:35Z","reason":"ReadyForNewScale","message":"recommended
+      size matches current size"},{"type":"ScalingActive","status":"True","lastTransitionTime":"2020-02-25T19:33:35Z","reason":"ValidMetricFound","message":"the
+      HPA was able to successfully calculate a replica count from cpu resource utilization
+      (percentage of request)"},{"type":"ScalingLimited","status":"False","lastTransitionTime":"2020-02-25T19:33:35Z","reason":"DesiredWithinRange","message":"the
+      desired count is within the acceptable range"}]'
+    autoscaling.alpha.kubernetes.io/current-metrics: '[{"type":"Resource","resource":{"name":"cpu","currentAverageUtilization":1,"currentAverageValue":"6m"}}]'
+  #IMPORTANTE: Nombre igual al del objeto SERVICE. 
+  name: utl-capadb-service
+  namespace: default
+  labels:
+    app: microservicio-utl-capadb-service
+    role: backend
+    stage: production
+spec:
+  #IMPORTANTE: # de INSTANCIAS de PODs que creceran. 
+  maxReplicas: 3
+  minReplicas: 1
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment    
+    name: utl-capadb-service
+  #IMPORTANTE: % que se debe de superar para que se active el: 'AUTOSCALING'. 
+  targetCPUUtilizationPercentage: 50
+status:
+  currentCPUUtilizationPercentage: 1
+  currentReplicas: 1
+  desiredReplicas: 1
+
