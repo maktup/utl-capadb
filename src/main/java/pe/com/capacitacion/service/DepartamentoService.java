@@ -1,10 +1,10 @@
 package pe.com.capacitacion.service;
  
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Autowired; 
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service; 
+import org.springframework.stereotype.Service;  
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand; 
 import lombok.extern.slf4j.Slf4j;
 import pe.com.capacitacion.bean.Auditoria;
@@ -13,8 +13,7 @@ import pe.com.capacitacion.dao.DepartamentoDao;
 import pe.com.capacitacion.dto.DBResponseDepMsg; 
 import pe.com.capacitacion.dto.ResponseDepMsg; 
 import pe.com.capacitacion.exception.AuditoriaDepException; 
-import pe.com.capacitacion.properties.ConfigurationData_01;
-import pe.com.capacitacion.properties.ConfigurationData_02;
+import pe.com.capacitacion.properties.ConfigurationData_01; 
 import pe.com.capacitacion.util.Constantes;
 
 /**
@@ -38,9 +37,6 @@ import pe.com.capacitacion.util.Constantes;
         private ConfigurationData_01 objConfigurationData01;   //ACCESO: inicia con [grupoconfig01]  
  
         @Autowired
-        private ConfigurationData_02 objConfigurationData02;   //ACCESO: inicia con [grupoconfig02] 
-		  
-        @Autowired
     	private Environment objVariablesEntorno;
         
         
@@ -56,10 +52,10 @@ import pe.com.capacitacion.util.Constantes;
 			   DBResponseDepMsg objDBResponseDepMsg = null; 
 			   ResponseDepMsg   objResponseDepMsg   = new ResponseDepMsg(); 
 			   Auditoria        objAuditoria        = null; 
-			   
-			   try{
+ 
+			   try{ 
 				   //Variables de Entorno: 
-				   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01, this.objConfigurationData02 );
+				   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01 ); 
 			       objDBResponseDepMsg = this.departamentoDao.agregarDepartamento( departamento );    
  			   } 
 			   catch( Exception e ){ 
@@ -90,10 +86,10 @@ import pe.com.capacitacion.util.Constantes;
 			   DBResponseDepMsg objDBResponseDepMsg = null;
 			   ResponseDepMsg   objResponseDepMsg   = new ResponseDepMsg(); 
 			   Auditoria        objAuditoria        = null; 
-			   
-			   try{
+ 
+			   try{ 
 				   //Variables de Entorno: 
-				   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01, this.objConfigurationData02 );
+				   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01 ); 
 			       objDBResponseDepMsg = this.departamentoDao.eliminarDepartamento( id.intValue() );    
  			   } 
 			   catch( Exception e ){ 
@@ -126,7 +122,7 @@ import pe.com.capacitacion.util.Constantes;
 		 
 			   try{
 				   //Variables de Entorno: 
-				   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01, this.objConfigurationData02 );
+				   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01 );
 				   objDBResponseDepMsg = this.departamentoDao.consultarDepartamentos( 0 ); //LISTA COMPLETA.
 			   } 
 			   catch( Exception e ){ 
@@ -161,7 +157,7 @@ import pe.com.capacitacion.util.Constantes;
 		 
 			   try{
 				   //Variables de Entorno: 
-				   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01, this.objConfigurationData02 );
+				   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01 ); 
 				   objDBResponseDepMsg = this.departamentoDao.consultarDepartamentos_x_organizacion( idOrg.intValue() ); //LISTA COMPLETA.
 			   } 
 			   catch( Exception e ){ 
@@ -196,7 +192,7 @@ import pe.com.capacitacion.util.Constantes;
 		 
 			   try{
 				   //Variables de Entorno: 
-				   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01, this.objConfigurationData02 );
+				   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01 ); 
 				   objDBResponseDepMsg = this.departamentoDao.consultarDepartamentos( id.intValue() ); //OBJETO
 			   } 
 			   catch( Exception e ){ 
@@ -219,22 +215,17 @@ import pe.com.capacitacion.util.Constantes;
 	   /**
 	    * mostrarVariablesEntorno
 	    * @param constantesParam
-	    * @param objConfigurationData01Param
-	    * @param objConfigurationData02Param
+	    * @param objConfigurationData01Param 
 	    **/
-        private void mostrarVariablesEntorno( Constantes constantesParam, ConfigurationData_01 objConfigurationData01Param, ConfigurationData_02 objConfigurationData02Param ){ 
+        private void mostrarVariablesEntorno( Constantes constantesParam, ConfigurationData_01 objConfigurationData01Param ){ 
         	    log.info( "-----> Departamento 'mostrarVariablesEntorno'" );
         	    
 			    String vNombreServicio  = constantesParam.nombreServicio; 
 			    String vValor_01        = constantesParam.valor01; 
 			    String vNombres         = objConfigurationData01Param.getNombres();
 			    String vDni             = objConfigurationData01Param.getDni(); 		
-			    String vDnsEmployee     = objConfigurationData02Param.getEmployee(); 
-			    String vDnsDepartment   = objConfigurationData02Param.getDepartment(); 
-			    String vDnsOrganization = objConfigurationData02Param.getOrganization();  
-			   
+ 
 			    log.info( "vNombreServicio: [" + vNombreServicio + "], vValor_01: [" + vValor_01 + "], vNombres: [" + vNombres + "], vDni: [" + vDni + "]" ); 
-			    log.info( "vDnsEmployee: [" + vDnsEmployee + "], vDnsDepartment: [" + vDnsDepartment + "], vDnsOrganization: [" + vDnsOrganization + "]" ); 
 			    
 			    log.info( "BOOTADMIN_USUARIO: [" + this.objVariablesEntorno.getProperty( "BOOTADMIN_USUARIO" ) + "],  BOOTADMIN_PASSWORD: [" + this.objVariablesEntorno.getProperty( "BOOTADMIN_PASSWORD" ) + "]" );
 			    log.info( "ORACLE_USUARIO: ["    + this.objVariablesEntorno.getProperty( "ORACLE_USUARIO"    ) + "],  ORACLE_PASSWORD: ["    + this.objVariablesEntorno.getProperty( "ORACLE_PASSWORD"    ) + "]" );   

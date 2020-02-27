@@ -110,12 +110,12 @@
 			<artifactId>spring-boot-starter-actuator</artifactId> 
 		</dependency>
         
-	    <!-- IMPORTANTE: [KUBERNETES] -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-kubernetes-config</artifactId>
-		    <version>0.3.0.RELEASE</version> 
-        </dependency>
+	    <!-- IMPORTANTE: [KUBERNETES] --> 
+		<dependency>
+		    <groupId>org.springframework.cloud</groupId>
+		    <artifactId>spring-cloud-starter-kubernetes-all</artifactId>
+		    <version>0.3.0.RELEASE</version>
+		</dependency> 
  
 	    <!-- IMPORTANTE: [MICROMETER] -->
 		<dependency>
@@ -141,8 +141,8 @@
 		  <groupId>io.jaegertracing</groupId>
 		  <artifactId>jaeger-core</artifactId>
 		  <version>0.27.0</version>
-		</dependency>	  
-	 
+		</dependency>
+  
 		<!-- IMPORTANTE: [BASE DE DATOS] -->
 		<dependency>
 			<groupId>commons-dbutils</groupId>
@@ -186,7 +186,7 @@
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>			 
-
+ 
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-core</artifactId>
@@ -218,6 +218,6 @@
 			</snapshots>
 		</repository>
 	</repositories>	
-     
+  
 </project>
 

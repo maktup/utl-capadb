@@ -1,13 +1,13 @@
 package pe.com.capacitacion;
 
-import javax.sql.DataSource;
-
+import javax.sql.DataSource; 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean; 
@@ -35,8 +35,9 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  @EnableHystrix             //IMPORTANTE: 'HYSTRIX' 
  @EnableFeignClients        //IMPORTANTE: 'FEIGN CLIENT'
  @EnableSwagger2            //IMPORTANTE: 'SWAGGER' 
+ @EnableDiscoveryClient     //IMPORTANTE: Descubrimiento por 'KUBERNETES'. 
  public class MainApp{
-	    
+ 
 		@Autowired
 		private Constantes constantes; 
 		
