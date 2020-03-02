@@ -107,7 +107,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 	           return objTracer;
 	    }     
 	    //----------------------------------------- [JEAGER] ----------------------------------------// 
-		
+ 
  } 
 
  

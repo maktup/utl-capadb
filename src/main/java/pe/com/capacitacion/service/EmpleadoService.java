@@ -218,7 +218,7 @@ import pe.com.capacitacion.util.Constantes;
 	    * @param objConfigurationData01Param 
 	    **/
         private void mostrarVariablesEntorno( Constantes constantesParam, ConfigurationData_01 objConfigurationData01Param ){ 
-        	    log.info( "-----> Departamento 'mostrarVariablesEntorno'" );
+        	    log.info( "-----> Empleado 'mostrarVariablesEntorno'" );
         	    
 			    String vNombreServicio  = constantesParam.nombreServicio; 
 			    String vValor_01        = constantesParam.valor01; 
