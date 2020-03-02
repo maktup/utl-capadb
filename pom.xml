@@ -204,7 +204,7 @@
 		</plugins>
 	</build>
 
-	<!-- ACCESO 'REPOSITORIO CENTRAL' - [NEXUS], requiere tener ACTIVO el 'NEXUS2' localmente & publico por: 'NO-IP' -->
+	<!-- ACCESO 'REPOSITORIO CENTRAL' - [NEXUS], requiere tener ACTIVO el 'NEXUS2' localmente & publico por: 'NO-IP' 
 	<repositories>
 		<repository>
 			<id>repoCentral_TallerMicroservicios</id>
@@ -218,6 +218,7 @@
 			</snapshots>
 		</repository>
 	</repositories>	
-  
+    -->
+    
 </project>
 
