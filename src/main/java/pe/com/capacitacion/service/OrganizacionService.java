@@ -4,12 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
-
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
-
-import brave.Tracer;
+import org.springframework.stereotype.Service; 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand; 
 import lombok.extern.slf4j.Slf4j;
 import pe.com.capacitacion.bean.Auditoria;
 import pe.com.capacitacion.bean.Organizacion; 
@@ -42,14 +38,8 @@ import pe.com.capacitacion.util.Constantes;
  
         @Autowired
     	private Environment objVariablesEntorno;
-                
-		@Autowired
-		private Tracer objTracer; 
-		
-		@Autowired
-		private RestTemplate objRestTemplate;
-		
-		
+ 
+        
 	   /**
 	    * agregarOrganizacionService 	
 	    * @param  organizacion
