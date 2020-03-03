@@ -39,6 +39,9 @@ import pe.com.capacitacion.util.Constantes;
         @Autowired
     	private Environment objVariablesEntorno;
         
+        @Autowired
+        private io.opentracing.Tracer jaegerAlertTracer; 
+        
         
 	   /**
 	    * agregarOrganizacionService 	
@@ -49,15 +52,22 @@ import pe.com.capacitacion.util.Constantes;
 		public ResponseEntity<ResponseEmpMsg> agregarEmpleadoService( Empleado empleado ){ 
 			   log.info( "------> Empleado 'agregarEmpleadoService': {}", empleado );
 			   
+			   io.opentracing.Scope objJaegerNombreOperacion = this.jaegerAlertTracer.buildSpan( "[agregarEmpleadoService]" ).startActive( true ); 
+			   
 			   DBResponseEmpMsg objDBResponseEmplMsg = null;
 			   ResponseEmpMsg   objResponseEmplMsg   = new ResponseEmpMsg(); 
 			   Auditoria        objAuditoria         = null; 
 			   
 			   try{
+				   //Agente JAEGER:  
+				   io.opentracing.Span objJaegerServicioHijo_01 = this.jaegerAlertTracer.buildSpan( "[PKG_EMPLEADOS.SP_REGISTRAR_EMPLEADOS]" ).asChildOf( objJaegerNombreOperacion.span() ).start();   
+				   
 				   //Variables de Entorno: 
 				   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01 ); 
-			       objDBResponseEmplMsg = this.empleadoDao.agregarEmpleado( empleado );    
- 			   } 
+			       objDBResponseEmplMsg = this.empleadoDao.agregarEmpleado( empleado );
+				   
+				   objJaegerServicioHijo_01.finish(); 
+			   }  
 			   catch( Exception e ){ 
 				      e.printStackTrace();
 			   }   
@@ -71,6 +81,8 @@ import pe.com.capacitacion.util.Constantes;
 			   objResponseEmplMsg.setAuditoria( objAuditoria );
 			   
 			   ResponseEntity<ResponseEmpMsg> objRetorno = new ResponseEntity<ResponseEmpMsg>( objResponseEmplMsg, HttpStatus.OK ); 
+			   
+			   objJaegerNombreOperacion.close(); 
 			   return objRetorno;		   
 		}		
 	
@@ -83,15 +95,22 @@ import pe.com.capacitacion.util.Constantes;
 		public ResponseEntity<ResponseEmpMsg> eliminarEmpleadoService(  Long id ){ 
 			   log.info( "------> Empleado 'eliminarEmpleadoService': {}", id );
 			   
+			   io.opentracing.Scope objJaegerNombreOperacion = this.jaegerAlertTracer.buildSpan( "[eliminarEmpleadoService]" ).startActive( true );
+			   
 			   DBResponseEmpMsg objDBResponseEmplMsg = null;
 			   ResponseEmpMsg   objResponseEmplMsg   = new ResponseEmpMsg(); 
 			   Auditoria        objAuditoria         = null; 
 			   
 			   try{
+				   //Agente JAEGER:  
+				   io.opentracing.Span objJaegerServicioHijo_01 = this.jaegerAlertTracer.buildSpan( "[PKG_EMPLEADOS.SP_ELIMINAR_EMPLEADOS]" ).asChildOf( objJaegerNombreOperacion.span() ).start();
+				   
 				   //Variables de Entorno: 
 				   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01 ); 
-			       objDBResponseEmplMsg = this.empleadoDao.eliminarEmpleado( id.intValue() );    
- 			   } 
+			       objDBResponseEmplMsg = this.empleadoDao.eliminarEmpleado( id.intValue() ); 
+				   
+				   objJaegerServicioHijo_01.finish(); 
+			   }   
 			   catch( Exception e ){ 
 				      e.printStackTrace();
 			   }   
@@ -105,7 +124,9 @@ import pe.com.capacitacion.util.Constantes;
 			   objResponseEmplMsg.setAuditoria( objAuditoria );
 			   
 			   ResponseEntity<ResponseEmpMsg> objRetorno = new ResponseEntity<ResponseEmpMsg>( objResponseEmplMsg, HttpStatus.OK ); 
-			   return objRetorno;			   
+			   
+			   objJaegerNombreOperacion.close(); 
+			   return objRetorno;		   
 		}
 				
 	   /**
@@ -116,15 +137,22 @@ import pe.com.capacitacion.util.Constantes;
 		public ResponseEntity<ResponseEmpMsg> consultarEmpleadosAllService(){
 			   log.info( "------> Empleado 'consultarEmpleadosAllService'" );
 			   
+			   io.opentracing.Scope objJaegerNombreOperacion = this.jaegerAlertTracer.buildSpan( "[consultarEmpleadosAllService]" ).startActive( true );
+			   
 			   DBResponseEmpMsg objDBResponseEmplMsg = null;
 			   ResponseEmpMsg   objResponseEmplMsg   = new ResponseEmpMsg(); 
 			   Auditoria        objAuditoria         = null; 
 		 
 			   try{
+				   //Agente JAEGER:  
+				   io.opentracing.Span objJaegerServicioHijo_01 = this.jaegerAlertTracer.buildSpan( "[PKG_EMPLEADOS.SP_LISTAR_EMPLEADOS]" ).asChildOf( objJaegerNombreOperacion.span() ).start();
+				   
 				   //Variables de Entorno: 
 				   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01 ); 
 				   objDBResponseEmplMsg = this.empleadoDao.consultarEmpleados( 0 ); //LISTA COMPLETA.
-			   } 
+				   
+				   objJaegerServicioHijo_01.finish(); 
+			   }  
 			   catch( Exception e ){ 
 				      e.printStackTrace();
 			   }   
@@ -139,8 +167,10 @@ import pe.com.capacitacion.util.Constantes;
 			   objResponseEmplMsg.setAuditoria( objAuditoria ); 
 			     
 			   ResponseEntity<ResponseEmpMsg> objRetorno = new ResponseEntity<ResponseEmpMsg>( objResponseEmplMsg, HttpStatus.OK ); 
-			   return objRetorno;
-		} 
+			  
+			   objJaegerNombreOperacion.close(); 
+			   return objRetorno;		   
+		}
 		
 	   /**
 	    * consultarOrganizacionesPorIdService	
@@ -151,15 +181,22 @@ import pe.com.capacitacion.util.Constantes;
 		public ResponseEntity<ResponseEmpMsg> consultarEmpleadosPorIdService( Long id ){
 			   log.info( "------> Empleado 'consultarEmpleadosPorIdService': id={}", id ); 
 			   
+			   io.opentracing.Scope objJaegerNombreOperacion = this.jaegerAlertTracer.buildSpan( "[consultarEmpleadosPorIdService]" ).startActive( true );
+			   
 			   DBResponseEmpMsg objDBResponseEmplMsg = null;
 			   ResponseEmpMsg   objResponseEmplMsg   = new ResponseEmpMsg(); 
 			   Auditoria        objAuditoria         = null; 
 		 
 			   try{
+				   //Agente JAEGER:  
+				   io.opentracing.Span objJaegerServicioHijo_01 = this.jaegerAlertTracer.buildSpan( "[PKG_EMPLEADOS.SP_LISTAR_EMPLEADOS]" ).asChildOf( objJaegerNombreOperacion.span() ).start();
+				   
 				   //Variables de Entorno: 
 				   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01 ); 
 				   objDBResponseEmplMsg = this.empleadoDao.consultarEmpleados( id.intValue() ); //OBJETO
-			   } 
+				   
+				   objJaegerServicioHijo_01.finish(); 
+			   }  
 			   catch( Exception e ){ 
 				      e.printStackTrace();
 			   }   
@@ -174,7 +211,9 @@ import pe.com.capacitacion.util.Constantes;
 			   objResponseEmplMsg.setAuditoria( objAuditoria ); 
 			     
 			   ResponseEntity<ResponseEmpMsg> objRetorno = new ResponseEntity<ResponseEmpMsg>( objResponseEmplMsg, HttpStatus.OK ); 
-			   return objRetorno; 
+	
+			   objJaegerNombreOperacion.close(); 
+			   return objRetorno;		   
 		}
  
 	   /**
@@ -186,14 +225,21 @@ import pe.com.capacitacion.util.Constantes;
 		public ResponseEntity<ResponseEmpMsg> consultarEmpleados_x_departamentoService( Long idDepartamento ){
 			   log.info( "------> Empleado 'consultarEmpleados_x_departamentoService': idDepartamento={}", idDepartamento ); 
 			   
+			   io.opentracing.Scope objJaegerNombreOperacion = this.jaegerAlertTracer.buildSpan( "[consultarEmpleados_x_departamentoService]" ).startActive( true );
+			   
 			   DBResponseEmpMsg objDBResponseEmplMsg = null;
 			   ResponseEmpMsg   objResponseEmplMsg   = new ResponseEmpMsg(); 
 			   Auditoria        objAuditoria         = null; 
 		 
 			   try{
+				   //Agente JAEGER:  
+				   io.opentracing.Span objJaegerServicioHijo_01 = this.jaegerAlertTracer.buildSpan( "[PKG_EMPLEADOS.SP_LISTAR_EMPLEADOS_X_DEPARTAMENTO]" ).asChildOf( objJaegerNombreOperacion.span() ).start();
+				   
 				   //Variables de Entorno: 
 				   this.mostrarVariablesEntorno( this.constantes, this.objConfigurationData01 ); 
 				   objDBResponseEmplMsg = this.empleadoDao.consultarEmpleados_x_departamento( idDepartamento.intValue() ); //LISTA
+				   
+				   objJaegerServicioHijo_01.finish(); 
 			   } 
 			   catch( Exception e ){ 
 				      e.printStackTrace();
@@ -209,7 +255,9 @@ import pe.com.capacitacion.util.Constantes;
 			   objResponseEmplMsg.setAuditoria( objAuditoria ); 
 			     
 			   ResponseEntity<ResponseEmpMsg> objRetorno = new ResponseEntity<ResponseEmpMsg>( objResponseEmplMsg, HttpStatus.OK ); 
-			   return objRetorno; 
+				
+			   objJaegerNombreOperacion.close(); 
+			   return objRetorno;		   
 		}
 		 
 	   /**
