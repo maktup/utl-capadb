@@ -319,6 +319,10 @@ paths:
 definitions: 
   Empleado:
     type: object
+    required:
+      - nombre
+      - edad
+      - rol  
     properties:
       id:
         type: integer
@@ -332,6 +336,8 @@ definitions:
         type: integer  
   Departamento:
     type: object
+    required:
+      - nombre
     properties:
       id:
         type: integer
@@ -345,6 +351,9 @@ definitions:
           $ref: '#/definitions/Empleado' 
   Organizacion:
     type: object
+    required:
+      - nombre
+      - direccion
     properties:
       id:
         type: integer
@@ -358,10 +367,17 @@ definitions:
           $ref: '#/definitions/Departamento'
           
   ResponseEmplMsg:
-    type: object
+    type: object 
     properties:
       auditoria:
         type: object
+        required:
+          - ipApp
+          - nombreApp
+          - usuarioApp
+          - codigoApp
+          - codigoHttp
+          - mensajeApp
         properties:
           ipApp:
             type: string
@@ -385,6 +401,13 @@ definitions:
     properties:
       auditoria:
         type: object
+        required:
+          - ipApp
+          - nombreApp
+          - usuarioApp
+          - codigoApp
+          - codigoHttp
+          - mensajeApp
         properties:
           ipApp:
             type: string
@@ -408,6 +431,13 @@ definitions:
     properties:
       auditoria:
         type: object
+        required:
+          - ipApp
+          - nombreApp
+          - usuarioApp
+          - codigoApp
+          - codigoHttp
+          - mensajeApp
         properties:
           ipApp:
             type: string
